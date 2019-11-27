@@ -1,8 +1,31 @@
+// Copyright (c) 2019 shitaro2016
+// 
+// This software is released under the MIT License.
+// https://opensource.org/licenses/MIT
+
 import React from "react";
-import { NextPage } from "next";
+import Head from "next/head"
+import Component from "../components/index"
 
-const Page: NextPage = () => (
-    <div>Hello, Next.js with TypeScript!</div>
-);
+type Props = {
+    title: string
+}
 
-export default Page;
+class App extends React.Component<Props> {
+    static async getInitialProps(): Promise<Props> {
+        return { title: "Hello, world!" };
+    }
+
+    render() {
+        return (
+            <>
+                <Head>
+                    <title>{this.props.title}</title>
+                </Head>
+                <Component />
+            </>
+        );
+    }
+}
+
+export default App;
