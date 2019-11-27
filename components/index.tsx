@@ -4,10 +4,19 @@
 // https://opensource.org/licenses/MIT
 
 import React from "react";
-import { NextComponentType } from "next";
+import { NextComponentType, NextPageContext } from "next";
+import styled from "styled-components";
 
-const Component : NextComponentType = () => (
-    <div>Hello, Next.js!</div>
+type Props = {
+    className?: string
+}
+
+const Component : NextComponentType<NextPageContext, {}, Props> = props => (
+    <div className = {props.className}>Hello, Next.js!</div>
 )
 
-export default Component;
+const StyledComponent = styled(Component)`
+    color: #f00;
+`
+
+export default StyledComponent;
