@@ -4,8 +4,8 @@
 // https://opensource.org/licenses/MIT
 
 import React from "react";
-import Head from "next/head"
-import StyledComponent from "../components/index"
+import Head from "next/head";
+import StyledComponent from "../components/index";
 
 type Props = {
     title: string
