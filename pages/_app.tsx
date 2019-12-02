@@ -4,7 +4,7 @@
 // https://opensource.org/licenses/MIT
 
 import React from "react";
-import App, { AppContext, Container } from "next/app";
+import App, { AppContext } from "next/app";
 
 export default class extends App {
     static async getInitialProps({ Component, ctx }: AppContext) {
