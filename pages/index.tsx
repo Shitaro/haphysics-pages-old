@@ -4,6 +4,7 @@
 // https://opensource.org/licenses/MIT
 
 import React from "react";
+import Link from "next/link";
 import Head from "next/head";
 import StyledComponent from "../components/index";
 
@@ -23,6 +24,9 @@ class App extends React.Component<Props> {
                     <title>{this.props.title}</title>
                 </Head>
                 <StyledComponent />
+                <Link href="./article">
+                    <a>Go to Article</a>
+                </Link>
             </>
         );
     }
