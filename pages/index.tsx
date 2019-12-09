@@ -8,6 +8,8 @@ import Link from "next/link";
 import Head from "next/head";
 import StyledComponent from "../components/index";
 
+import MDXComponent from "./posts/hello.mdx";
+
 type Props = {
     title: string
 }
@@ -27,6 +29,7 @@ class App extends React.Component<Props> {
                 <Link href="./article">
                     <a>Go to Article</a>
                 </Link>
+                <MDXComponent />
             </>
         );
     }
