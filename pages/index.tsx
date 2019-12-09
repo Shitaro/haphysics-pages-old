@@ -3,7 +3,7 @@
 // This software is released under the MIT License.
 // https://opensource.org/licenses/MIT
 
-import React from "react";
+import * as React from "react";
 import Link from "next/link";
 import Head from "next/head";
 import StyledComponent from "../components/index";

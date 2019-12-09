@@ -3,16 +3,15 @@
 // This software is released under the MIT License.
 // https://opensource.org/licenses/MIT
 
-import React from "react";
-import { NextComponentType, NextPageContext } from "next";
+import * as React from "react";
 import styled from "styled-components";
 
 type Props = {
     className?: string
 }
 
-const Component : NextComponentType<NextPageContext, {}, Props> = props => (
-    <div className = {props.className}>Hello, Next.js!</div>
+const Component: React.FC<Props> = props => (
+    <div className={props.className}>Hello, Next.js!</div>
 )
 
 const StyledComponent = styled(Component)`
