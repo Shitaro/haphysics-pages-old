@@ -3,9 +3,12 @@
 // This software is released under the MIT License.
 // https://opensource.org/licenses/MIT
 
-import React from "react";
+import * as React from "react";
+import Link from "next/link";
 import Head from "next/head";
 import StyledComponent from "../components/index";
+
+import MDXComponent from "./posts/hello.mdx";
 
 type Props = {
     title: string
@@ -23,6 +26,10 @@ class App extends React.Component<Props> {
                     <title>{this.props.title}</title>
                 </Head>
                 <StyledComponent />
+                <Link href="./article">
+                    <a>Go to Article</a>
+                </Link>
+                <MDXComponent />
             </>
         );
     }
