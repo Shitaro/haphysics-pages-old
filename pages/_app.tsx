@@ -7,13 +7,14 @@ import React from "react";
 import App, { AppContext } from "next/app";
 
 export default class extends App {
-    static async getInitialProps({ Component, ctx }: AppContext) {
-        let pageProps = {};
-        if (Component.getInitialProps) {
-            pageProps = await Component.getInitialProps(ctx);
-        }
-        return { pageProps };
-    }
+    // https://github.com/zeit/next.js/blob/master/errors/opt-out-auto-static-optimization.md
+    // static async getInitialProps({ Component, ctx }: AppContext) {
+    //     let pageProps = {};
+    //     if (Component.getInitialProps) {
+    //         pageProps = await Component.getInitialProps(ctx);
+    //     }
+    //     return { pageProps };
+    // }
 
     render() {
         const { Component, pageProps } = this.props;

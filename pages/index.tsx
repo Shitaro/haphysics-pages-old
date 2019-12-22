@@ -4,35 +4,41 @@
 // https://opensource.org/licenses/MIT
 
 import * as React from "react";
+import { NextPage } from "next";
 import Link from "next/link";
 import Head from "next/head";
 import StyledComponent from "../components/index";
+import Header from "../components/Header";
 
-import MDXComponent from "./posts/hello.mdx";
+import data from "../components/article-list.json"
 
-type Props = {
-    title: string
-}
+const articleList = data["article"];
 
-class App extends React.Component<Props> {
-    static async getInitialProps(): Promise<Props> {
-        return { title: "Hello, world!" };
-    }
+const articleComponentList: JSX.Element[] = articleList.map(article=>{
+  const { meta } = require(`../pages/articles/${article}.mdx`);
 
-    render() {
-        return (
-            <>
-                <Head>
-                    <title>{this.props.title}</title>
-                </Head>
-                <StyledComponent />
-                <Link href="./article">
-                    <a>Go to Article</a>
-                </Link>
-                <MDXComponent />
-            </>
-        );
-    }
-}
+  return (
+    <>
+      <Link href={`/articles/${article}`} as={`/doc/${article}`}>
+        <a>{meta.title}</a>
+      </Link>
+      <p>{meta.description}</p>
+    </>
+  )
+})
 
-export default App;
+const IndexPage: NextPage = () => (
+    <>
+        <Head>
+            <title>幸福の物理 - Haphysics</title>
+        </Head>
+
+        <Header />
+
+        <StyledComponent />
+        <h1>Article List</h1>
+        {articleComponentList}
+    </>
+);
+
+export default IndexPage;
