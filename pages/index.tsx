@@ -3,29 +3,42 @@
 // This software is released under the MIT License.
 // https://opensource.org/licenses/MIT
 
-import React from "react";
-import Head from "next/head"
-import StyledComponent from "../components/index"
+import * as React from "react";
+import { NextPage } from "next";
+import Link from "next/link";
+import Head from "next/head";
+import StyledComponent from "../components/index";
+import Header from "../components/Header";
 
-type Props = {
-    title: string
-}
+import data from "../components/article-list.json"
 
-class App extends React.Component<Props> {
-    static async getInitialProps(): Promise<Props> {
-        return { title: "Hello, world!" };
-    }
+const articleList = data["article"];
 
-    render() {
-        return (
-            <>
-                <Head>
-                    <title>{this.props.title}</title>
-                </Head>
-                <StyledComponent />
-            </>
-        );
-    }
-}
+const articleComponentList: JSX.Element[] = articleList.map(article=>{
+  const { meta } = require(`../pages/articles/${article}.mdx`);
 
-export default App;
+  return (
+    <>
+      <Link href={`/articles/${article}`} as={`/doc/${article}`}>
+        <a>{meta.title}</a>
+      </Link>
+      <p>{meta.description}</p>
+    </>
+  )
+})
+
+const IndexPage: NextPage = () => (
+    <>
+        <Head>
+            <title>幸福の物理 - Haphysics</title>
+        </Head>
+
+        <Header />
+
+        <StyledComponent />
+        <h1>Article List</h1>
+        {articleComponentList}
+    </>
+);
+
+export default IndexPage;
