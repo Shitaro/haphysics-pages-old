@@ -1,11 +1,12 @@
 {
   "scripts": {
     "dev": "next",
-    "build": "next build",
-    "start": "next start"
+    "build": "node articles-builder.js && next build",
+    "start": "next start",
+    "export": "next export"
   },
   "dependencies": {
-    "@mdx-js/loader": "^1.5.1",
+    "@mdx-js/loader": "1.5.3",
     "@next/mdx": "^9.1.4",
     "next": "^9.1.4",
     "react": "^16.12.0",
