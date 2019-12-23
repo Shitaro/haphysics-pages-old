@@ -1,9 +1,14 @@
 const fs = require('fs');
 const util = require("util");
 const path = require('path');
-
+const remarkMath = require('remark-math')
+const rehypeKatex = require('rehype-katex')
 const withMDX = require("@next/mdx")({
-    extension: /\.mdx?$/
+    extension: /\.mdx?$/,
+    options: {
+        remarkPlugins: [remarkMath],
+        rehypePlugins: [rehypeKatex]
+    }
 });
 
 const readdir = util.promisify(fs.readdir);

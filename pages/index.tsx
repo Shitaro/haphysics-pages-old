@@ -19,7 +19,7 @@ const articleComponentList: JSX.Element[] = articleList.map(article=>{
 
   return (
     <>
-      <Link href={`/articles/${article}`} as={`/doc/${article}`}>
+      <Link href={`/articles/${article}`} as={`/post/${article}`}>
         <a>{meta.title}</a>
       </Link>
       <p>{meta.description}</p>
