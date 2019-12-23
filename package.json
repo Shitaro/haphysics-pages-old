@@ -1,8 +1,9 @@
 {
   "scripts": {
-    "dev": "next",
+    "dev": "node articles-builder.js && next",
     "build": "node articles-builder.js && next build",
     "start": "next start",
+    "deploy": "npm run build && npm run export",
     "export": "next export"
   },
   "dependencies": {
