@@ -10,9 +10,11 @@ type Props = {
     className?: string
 }
 
-const Component: React.FC<Props> = props => (
-    <div className={props.className}>Hello, Next.js!</div>
-)
+function Component(props :Props) {
+    return (
+        <div className={props.className}>Hello, Next.js!</div>
+    )
+}
 
 const StyledComponent = styled(Component)`
     color: #f00;

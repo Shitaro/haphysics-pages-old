@@ -4,22 +4,20 @@
 // https://opensource.org/licenses/MIT
 
 import React from "react";
-import App, { AppContext } from "next/app";
+import App from "next/app";
+// Material-UI
+// "be used at the root of your component tree"
+// https://material-ui.com/styles/api/#themeprovider
+import { ThemeProvider } from "@material-ui/core/styles";
+import theme from "../src/theme";
 
 export default class extends App {
-    // https://github.com/zeit/next.js/blob/master/errors/opt-out-auto-static-optimization.md
-    // static async getInitialProps({ Component, ctx }: AppContext) {
-    //     let pageProps = {};
-    //     if (Component.getInitialProps) {
-    //         pageProps = await Component.getInitialProps(ctx);
-    //     }
-    //     return { pageProps };
-    // }
-
     render() {
         const { Component, pageProps } = this.props;
         return (
-            <Component {...pageProps} />
+            <ThemeProvider theme={theme}>
+                <Component {...pageProps} />
+            </ThemeProvider>
         );
     }
 }
