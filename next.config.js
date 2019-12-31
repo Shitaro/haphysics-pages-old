@@ -30,7 +30,7 @@ module.exports = withMDX({
             '/': { page: '/' }
         }
 
-        const articles = await readdir("./pages/articles");
+        const articles = await readdir("./src/pages/articles");
 
         articles.forEach(article => {
             const articlePath = path.parse(article).name;

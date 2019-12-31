@@ -17,7 +17,7 @@ https://haphysics.com/
 
 ## Description
 
-This web page provides my insights on natural science, programming and electronics.
+This website provides my insights on natural science, programming and electronics.
 
 My website is composed of...
 

@@ -5,7 +5,7 @@
 
 import React from "react";
 import { Head, Main, NextScript } from "next/document";
-import theme from '../src/theme';
+import theme from '../theme';
 
 export default () => (
     <html>

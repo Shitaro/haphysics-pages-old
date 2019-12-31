@@ -9,7 +9,7 @@ import App from "next/app";
 // "be used at the root of your component tree"
 // https://material-ui.com/styles/api/#themeprovider
 import { ThemeProvider } from "@material-ui/core/styles";
-import theme from "../src/theme";
+import theme from "../theme";
 
 export default class extends App {
     render() {
