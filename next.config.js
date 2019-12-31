@@ -1,3 +1,11 @@
+// Copyright (c) 2019 shitaro2016
+// 
+// This software is released under the MIT License.
+// https://opensource.org/licenses/MIT
+
+// How to configure to use MDX in Next.js
+// https://mdxjs.com/getting-started/next
+
 const fs = require('fs');
 const util = require("util");
 const path = require('path');
@@ -22,7 +30,7 @@ module.exports = withMDX({
             '/': { page: '/' }
         }
 
-        const articles = await readdir("./pages/articles");
+        const articles = await readdir("./src/pages/articles");
 
         articles.forEach(article => {
             const articlePath = path.parse(article).name;
