@@ -24,7 +24,7 @@
   ],
   "include": [
     "next-env.d.ts",
-    "types/mdx.d.ts",
+    "src/types/mdx.d.ts",
     "**/*.ts",
     "**/*.tsx"
   ]

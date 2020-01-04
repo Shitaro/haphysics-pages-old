@@ -5,7 +5,7 @@
 
 import React from "react";
 import { Head, Main, NextScript } from "next/document";
-import theme from '../theme';
+import theme from '../assets/theme';
 
 export default () => (
     <html>
@@ -37,10 +37,18 @@ export default () => (
                 rel="stylesheet"
                 href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/themes/prism-tomorrow.min.css"
             />
+            <link
+                rel="stylesheet"
+                href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/plugins/line-numbers/prism-line-numbers.min.css"
+            />
         </Head>
         <body>
             <Main />
             <NextScript />
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/prism.min.js" />
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/components/prism-core.min.js" />
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/plugins/autoloader/prism-autoloader.min.js" />
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/plugins/line-numbers/prism-line-numbers.min.js" />
         </body>
     </html>
 );
