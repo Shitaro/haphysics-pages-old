@@ -4,7 +4,6 @@
 // https://opensource.org/licenses/MIT
 
 import { createMuiTheme, createPalette } from "@material-ui/core/styles";
-import { red } from "@material-ui/core/colors";
 
 
 const theme = createMuiTheme({

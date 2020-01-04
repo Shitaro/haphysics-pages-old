@@ -9,14 +9,21 @@ import App from "next/app";
 // "be used at the root of your component tree"
 // https://material-ui.com/styles/api/#themeprovider
 import { ThemeProvider } from "@material-ui/core/styles";
-import theme from "../theme";
+import { MDXProvider } from "@mdx-js/react";
+import theme from "../assets/theme";
+
+const components = {
+    inlineCode: (props: any) => <code class="language-none" {...props}/>
+}
 
 export default class extends App {
     render() {
         const { Component, pageProps } = this.props;
         return (
             <ThemeProvider theme={theme}>
-                <Component {...pageProps} />
+                <MDXProvider components={components}>
+                    <Component {...pageProps} />
+                </MDXProvider>
             </ThemeProvider>
         );
     }
