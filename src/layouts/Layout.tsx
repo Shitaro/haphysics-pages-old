@@ -11,14 +11,6 @@ export default () => (
     <html>
         <Head>
             <meta charSet="utf-8" />
-            {/* Material-UI
-                "To ensure proper rendering and touch zooming for all devices"
-                https://material-ui.com/getting-started/usage/#responsive-meta-tag 
-              */}
-            <meta
-                name="viewport"
-                content="minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no"
-            />
             {/* PWA primary color */}
             <meta name="theme-color" content={theme.palette.primary.main} />
             <link
@@ -37,18 +29,10 @@ export default () => (
                 rel="stylesheet"
                 href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/themes/prism-tomorrow.min.css"
             />
-            <link
-                rel="stylesheet"
-                href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/plugins/line-numbers/prism-line-numbers.min.css"
-            />
         </Head>
         <body>
             <Main />
             <NextScript />
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/prism.min.js" />
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/components/prism-core.min.js" />
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/plugins/autoloader/prism-autoloader.min.js" />
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/plugins/line-numbers/prism-line-numbers.min.js" />
         </body>
     </html>
 );
