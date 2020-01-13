@@ -56,15 +56,32 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-type ButtonProps = {
-  href: string;
+const LinkButton: React.FC<{ href: string}> = props => {
+  return (
+    <Link href={props.href} passHref>
+      <Button component="a">
+        {props.children}
+      </Button>
+    </Link>
+  )
 }
 
-const StyledButton: React.FC<ButtonProps> = ({ href, children }) => {
+const Search: React.FC = () => {
+  const classes = useStyles();
   return (
-    <Button href={href}>
-        {children}
-    </Button>
+    <div className={classes.search}>
+      <div className={classes.searchIcon}>
+        <SearchIcon />
+      </div>
+      <InputBase
+        placeholder="Search..."
+        classes={{
+          root: classes.inputRoot,
+          input: classes.inputInput
+        }}
+        inputProps={{ "aria-label": "search" }}
+      />
+    </div>
   )
 }
 
@@ -74,22 +91,10 @@ function Header() {
     <div className={classes.grow}>
       <AppBar position="static">
         <ToolBar>
-          <StyledButton href="/">
+          <LinkButton href="/">
             Home
-          </StyledButton>
-          <div className={classes.search}>
-            <div className={classes.searchIcon}>
-              <SearchIcon />
-            </div>
-            <InputBase
-              placeholder="Search..."
-              classes={{
-                root: classes.inputRoot,
-                input: classes.inputInput
-              }}
-              inputProps={{ "aria-label": "search" }}
-            />
-          </div>
+          </LinkButton>
+          <Search />
         </ToolBar>
       </AppBar>
     </div>
