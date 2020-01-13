@@ -88,7 +88,7 @@ const SearchBar: React.FC = () => {
   )
 }
 
-function Header() {
+function HeaderNavigation() {
   const classes = useStyles();
   return (
     <div className={classes.grow}>
@@ -104,4 +104,4 @@ function Header() {
   );
 }
 
-export default Header;
+export default HeaderNavigation;
