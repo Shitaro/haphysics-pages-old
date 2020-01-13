@@ -19,6 +19,9 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 import { MDXProvider } from "@mdx-js/react";
 import theme from "../assets/theme";
 
+import HeaderNavigation from "../components/HeaderNavigation";
+import BottomNavigation from "../components/BottomNavigation";
+
 const components = {
     inlineCode: (props: any) => <code class="language-none" {...props}/>
 }
@@ -50,7 +53,9 @@ export default class extends App {
                 <ThemeProvider theme={theme}>
                     <MDXProvider components={components}>
                         <CssBaseline />
+                        <HeaderNavigation />
                         <Component {...pageProps} />
+                        <BottomNavigation />
                     </MDXProvider>
                 </ThemeProvider>
             </>
