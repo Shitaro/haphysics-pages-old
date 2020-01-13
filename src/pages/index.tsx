@@ -8,13 +8,12 @@ import { NextPage } from "next";
 import Link from "next/link";
 import Head from "next/head";
 import StyledComponent from "../components/index";
-import Header from "../components/Header";
 
 import data from "../components/article-list.json"
 
 const articleList = data["article"];
 
-const articleComponentList: JSX.Element[] = articleList.map(article=>{
+const articleComponentList: JSX.Element[] = articleList.map(article => {
   const { meta } = require(`../pages/articles/${article}.mdx`);
 
   return (
@@ -28,17 +27,15 @@ const articleComponentList: JSX.Element[] = articleList.map(article=>{
 })
 
 const IndexPage: NextPage = () => (
-    <>
-        <Head>
-            <title>幸福の物理 - Haphysics</title>
-        </Head>
+  <>
+    <Head>
+      <title>幸福の物理 - Haphysics</title>
+    </Head>
 
-        <Header />
-
-        <StyledComponent />
-        <h1>Article List</h1>
-        {articleComponentList}
-    </>
+    <StyledComponent />
+    <h1>Article List</h1>
+    {articleComponentList}
+  </>
 );
 
 export default IndexPage;
