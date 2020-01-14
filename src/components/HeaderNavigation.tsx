@@ -5,7 +5,7 @@
 
 import React from "react";
 import Link from "next/link";
-import { fade, makeStyles, createStyles, Theme } from "@material-ui/core/styles";
+import { fade, makeStyles, createStyles, Theme, createMuiTheme } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import ToolBar from "@material-ui/core/Toolbar";
 import InputBase from "@material-ui/core/InputBase";
@@ -15,8 +15,8 @@ import Hidden from "@material-ui/core/Hidden";
 
 const useStyles = makeStyles((theme: Theme) => 
   createStyles({
-    grow: {
-      flexGrow: 1
+    root: {
+      flexGrow: 1,
     },
     search: {
       position: "relative",
@@ -43,7 +43,7 @@ const useStyles = makeStyles((theme: Theme) =>
       justifyContent: "center"
     },
     inputRoot: {
-      color: "inherit"
+      color: "inherit",
     },
     inputInput: {
       padding: theme.spacing(1, 1, 1, 7),
@@ -91,8 +91,8 @@ const SearchBar: React.FC = () => {
 function HeaderNavigation() {
   const classes = useStyles();
   return (
-    <div className={classes.grow}>
-      <AppBar position="static">
+    <div className={classes.root}>
+      <AppBar position="fixed">
         <ToolBar>
           <Hidden xsDown>
             <LinkButton href="/">Home</LinkButton>
