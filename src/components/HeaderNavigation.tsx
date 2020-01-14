@@ -13,6 +13,8 @@ import SearchIcon from "@material-ui/icons/Search";
 import Button from "@material-ui/core/Button";
 import Hidden from "@material-ui/core/Hidden";
 
+export const headerNavHeight = createMuiTheme().spacing(8);
+
 const useStyles = makeStyles((theme: Theme) => 
   createStyles({
     root: {
@@ -92,8 +94,8 @@ function HeaderNavigation() {
   const classes = useStyles();
   return (
     <div className={classes.root}>
-      <AppBar position="fixed">
-        <ToolBar>
+      <AppBar position="fixed" style={{ height: headerNavHeight }}>
+        <ToolBar style={{ height: headerNavHeight }}>
           <Hidden xsDown>
             <LinkButton href="/">Home</LinkButton>
           </Hidden>

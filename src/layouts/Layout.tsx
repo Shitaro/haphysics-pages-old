@@ -4,23 +4,11 @@
 // https://opensource.org/licenses/MIT
 
 import React from "react";
-import { Head, Main, NextScript } from "next/document";
+import { Html, Head, Main, NextScript } from "next/document";
 import theme from '../assets/theme';
-import styled from "styled-components";
-import { bottomNavHeight } from "../components/BottomNavigation";
-
-// Fill body with blanks only for the height of two navigations
-const Body: React.FC<{ className?: string }> = props => (
-    <body className={props.className}>{props.children}</body>
-)
-
-const StyledBody = styled(Body)`
-    padding-top: 64px;
-    padding-bottom: ${bottomNavHeight}px;
-`
 
 export default () => (
-    <html>
+    <Html>
         <Head>
             <meta charSet="utf-8" />
             {/* PWA primary color */}
@@ -42,9 +30,9 @@ export default () => (
                 href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/themes/prism-tomorrow.min.css"
             />
         </Head>
-        <StyledBody>
+        <body>
             <Main />
             <NextScript />
-        </StyledBody>
-    </html>
+        </body>
+    </Html>
 );
