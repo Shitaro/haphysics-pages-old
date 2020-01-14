@@ -5,11 +5,13 @@
 
 import React from 'react';
 import Link from "next/link";
-import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
+import { makeStyles, createStyles, Theme, createMuiTheme } from '@material-ui/core/styles';
 import BottomNavigation from '@material-ui/core/BottomNavigation';
 import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
 import HomeIcon from "@material-ui/icons/Home";
 import Hidden from "@material-ui/core/Hidden";
+
+export const bottomNavHeight = createMuiTheme().spacing(7);
 
 const useStyles = makeStyles((theme: Theme) => 
     createStyles({
@@ -18,7 +20,7 @@ const useStyles = makeStyles((theme: Theme) =>
             bottom: 0,
             background: theme.palette.primary.main,
             width: "100%",
-            height: theme.spacing(7),
+            height: bottomNavHeight,
         },
         iconRoot: {
             color: theme.palette.common.black,
