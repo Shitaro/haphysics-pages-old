@@ -13,8 +13,6 @@ import SearchIcon from "@material-ui/icons/Search";
 import Button from "@material-ui/core/Button";
 import Hidden from "@material-ui/core/Hidden";
 
-export const headerNavHeight = createMuiTheme().spacing(8);
-
 const useStyles = makeStyles((theme: Theme) => 
   createStyles({
     root: {
@@ -57,7 +55,8 @@ const useStyles = makeStyles((theme: Theme) =>
           width: 200
         }
       }
-    }
+    },
+    offset: theme.mixins.toolbar,
   })
 );
 
@@ -94,14 +93,17 @@ function HeaderNavigation() {
   const classes = useStyles();
   return (
     <div className={classes.root}>
-      <AppBar position="fixed" style={{ height: headerNavHeight }}>
-        <ToolBar style={{ height: headerNavHeight }}>
+      <AppBar position="fixed">
+        <ToolBar>
           <Hidden xsDown>
             <LinkButton href="/">Home</LinkButton>
           </Hidden>
           <SearchBar />
         </ToolBar>
       </AppBar>
+      {/* Fill the page with blanks so that the page does not hide behind the toolbar
+          https://material-ui.com/components/app-bar/#fixed-placement */}
+      <div className={classes.offset} />
     </div>
   );
 }

@@ -19,8 +19,8 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 import { MDXProvider } from "@mdx-js/react";
 import theme from "../assets/theme";
 
-import HeaderNavigation, { headerNavHeight } from "../components/HeaderNavigation";
-import BottomNavigation, { bottomNavHeight } from "../components/BottomNavigation";
+import HeaderNavigation from "../components/HeaderNavigation";
+import BottomNavigation from "../components/BottomNavigation";
 
 const components = {
     inlineCode: (props: any) => <code class="language-none" {...props}/>
@@ -53,13 +53,6 @@ export default class extends App {
                 <ThemeProvider theme={theme}>
                     <MDXProvider components={components}>
                         <CssBaseline />
-                        {/* Fill body with blanks only for the height of two navigations */}
-                        <style global jsx>{`
-                            body {
-                                padding-top: ${headerNavHeight}px;
-                                padding-bottom: ${bottomNavHeight}px;
-                            }
-                        `}</style>
                         <HeaderNavigation />
                         <Component {...pageProps} />
                         <BottomNavigation />
