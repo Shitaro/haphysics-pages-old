@@ -11,7 +11,7 @@ import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
 import HomeIcon from "@material-ui/icons/Home";
 import Hidden from "@material-ui/core/Hidden";
 
-export const bottomNavHeight = createMuiTheme().spacing(7);
+const bottomNavHeight = createMuiTheme().spacing(7);
 
 const useStyles = makeStyles((theme: Theme) => 
     createStyles({
@@ -24,7 +24,10 @@ const useStyles = makeStyles((theme: Theme) =>
         },
         iconRoot: {
             color: theme.palette.common.black,
-        }
+        },
+        offset: { 
+            paddingTop: bottomNavHeight
+        },
     })
 );
 
@@ -33,6 +36,7 @@ export default function SimpleBottomNavigation() {
 
     return (
         <Hidden smUp>
+            <div className={classes.offset} />
             <BottomNavigation
                 className={classes.root}
             >
