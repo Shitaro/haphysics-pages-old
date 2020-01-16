@@ -16,11 +16,11 @@ import TableRow from "@material-ui/core/TableRow";
 // https://mdxjs.com/getting-started#mdxprovider
 const components = {
     p: Typography,
-    h1: (props: any) => <Typography {...props} component="h1" variant="h1" />,
-    h2: (props: any) => <Typography {...props} component="h2" variant="h2" />,
-    h3: (props: any) => <Typography {...props} component="h3" variant="h3" />,
-    h4: (props: any) => <Typography {...props} component="h4" variant="h4" />,
-    h5: (props: any) => <Typography {...props} component="h5" variant="h5" />,
+    h1: (props: any) => <Typography {...props} component="h1" variant="h3" />,
+    h2: (props: any) => <Typography {...props} component="h2" variant="h4" />,
+    h3: (props: any) => <Typography {...props} component="h3" variant="h5" />,
+    h4: (props: any) => <Typography {...props} component="h4" variant="h6" />,
+    h5: (props: any) => <Typography {...props} component="h5" variant="h6" />,
     h6: (props: any) => <Typography {...props} component="h6" variant="h6" />,
     ul: (props: any) => <Typography {...props} component="ul" />,
     ol: (props: any) => <Typography {...props} component="ol" />,
