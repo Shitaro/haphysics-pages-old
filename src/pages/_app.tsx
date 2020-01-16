@@ -22,9 +22,7 @@ import theme from "../assets/theme";
 import HeaderNavigation from "../components/HeaderNavigation";
 import BottomNavigation from "../components/BottomNavigation";
 
-const components = {
-    inlineCode: (props: any) => <code class="language-none" {...props}/>
-}
+import components from "../assets/MdxComponents";
 
 export default class extends App {
     componentDidMount() {
