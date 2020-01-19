@@ -3,53 +3,41 @@
 // This software is released under the MIT License.
 // https://opensource.org/licenses/MIT
 
-import * as React from "react";
+import React from "react";
 import { NextPage } from "next";
-import Link from "next/link";
 import Head from "next/head";
 import MediaCard from "../components/MediaCard";
-import StyledComponent from "../components/index";
+import articleMetaList from "../utils/ArticleMetaList";
 
-import data from "../components/article-list.json"
-
-const articleList = data["article"];
-
-const articleComponentList: JSX.Element[] = articleList.map(article => {
-  const { meta } = require(`../pages/articles/${article}.mdx`);
+const IndexPage: NextPage = () => {
+  articleMetaList.sort((a,b) => {
+    const keyA = Object.keys(a)[0];
+    const keyB = Object.keys(b)[0];
+    return (
+      a[keyA].title < b[keyB].title ? 1 : -1
+    )
+  });
 
   return (
     <>
-      <Link href={`/articles/${article}`} as={`/post/${article}`}>
-        <a>{meta.title}</a>
-      </Link>
-      <p>{meta.description}</p>
-    </>
-  )
-})
-
-const IndexPage: NextPage = () => (
-  <>
-    <Head>
-      <title>幸福の物理 - Haphysics</title>
-    </Head>
-    {articleList.map(article => {
-      const { meta } = require(`../pages/articles/${article}.mdx`);
-      return (
-        <>
+      <Head>
+        <title>幸福の物理 - Haphysics</title>
+      </Head>
+      <h1>Article List</h1>
+      {articleMetaList.map(articleMeta => {
+        const article = Object.keys(articleMeta)[0];
+        return (
           <MediaCard
             article={article}
-            title={meta.title}
-            thumbnail={meta.thumbnail}
-            description={meta.description}
-            categoryList={meta.category}
+            title={articleMeta[article].title}
+            thumbnail={articleMeta[article].thumbnail}
+            description={articleMeta[article].description}
+            categoryList={articleMeta[article].categoryList}
           />
-        </>
-      )
-    })}
-    <StyledComponent />
-    <h1>Article List</h1>
-    {articleComponentList}
-  </>
-);
+        )
+      })}
+    </>
+  )
+};
 
 export default IndexPage;
