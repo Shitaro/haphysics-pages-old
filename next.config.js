@@ -27,7 +27,8 @@ module.exports = withMDX({
 
     exportPathMap: async function () {
         const paths = {
-            '/': { page: '/' }
+            '/': { page: '/' },
+            '/category': { page: '/category' }
         }
 
         const articles = await readdir("./src/pages/articles");
