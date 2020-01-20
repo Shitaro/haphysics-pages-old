@@ -8,39 +8,6 @@ const path = require("path");
 const mdx = require('@mdx-js/mdx')
 const visit = require("unist-util-visit");
 
-// // Read all articles written by .mdx from "./pages/articles" directory
-// const articles = fs.readdirSync("./src/pages/articles").map(article => path.parse(article).name);
-
-// const metaList = [];
-// function extractMeta() {
-//     return tree => {
-//         visit(tree, "export", node => {
-//             const hasMeta = node.value.match(/\bmeta\b/g); // Does the string have the word "meta"?
-//             if (hasMeta) {
-//                 const meta = node.value
-//                                  .replace(/[\s\S]*({)([\s\S]*)(})/g, "$1$2$3") // Remove "const export meta = "
-//                                  .replace(/\b(title|description|thumbnail|category|postDate)/g, '"$1"'); // Surround keys with double quotes
-//                 metaList.push(JSON.parse(meta));
-//             }
-//         })
-//     }
-// }
-
-// mdx.sync(mdxText, {
-//     remarkPlugins: [
-//         [extractMeta]
-//     ]
-// });
-
-// fs.writeFile(
-//     "./src/components/article-list.json", // Set path to output json file containing names of all articles
-//     JSON.stringify({ article: articles }), // Convert { "article": ["article",...] } to JSON string
-//     error => { // Handle error
-//         if (error) throw error;
-//         console.log("Finished to generate article-list.json completely!");
-//     }
-// )
-
 const articleList = [];
 
 // Extract meta data from a mdx file
