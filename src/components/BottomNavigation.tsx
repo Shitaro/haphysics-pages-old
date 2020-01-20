@@ -9,6 +9,7 @@ import { makeStyles, createStyles, Theme, createMuiTheme } from '@material-ui/co
 import BottomNavigation from '@material-ui/core/BottomNavigation';
 import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
 import HomeIcon from "@material-ui/icons/Home";
+import CategoryIcon from "@material-ui/icons/Folder";
 import Hidden from "@material-ui/core/Hidden";
 
 const bottomNavHeight = createMuiTheme().spacing(7);
@@ -44,6 +45,17 @@ export default function SimpleBottomNavigation() {
                     <BottomNavigationAction
                         label="HOME"
                         icon={<HomeIcon />}
+                        showLabel
+                        classes={{
+                            root: classes.iconRoot
+                        }}
+                        component="a"
+                    />
+                </Link>
+                <Link href="/category" passHref>
+                    <BottomNavigationAction
+                        label="CATEGORY"
+                        icon={<CategoryIcon />}
                         showLabel
                         classes={{
                             root: classes.iconRoot
