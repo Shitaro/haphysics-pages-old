@@ -5,7 +5,8 @@
 
 import data from "../components/article-list.json"
 
-interface Meta {
+interface Article {
+  article: string,
   title: string,
   description: string,
   thumbnail: string,
@@ -14,26 +15,21 @@ interface Meta {
   lastUpdateDate?: number
 }
 
-interface ArticleMeta {
-  [article: string]: Meta
-}
-
-function getArticleMetaList(articles:string[]): ArticleMeta[] {
-  return articles.map(article => {
-    const { meta } = require(`../pages/articles/${article}.mdx`);
-
-    const articleMeta: ArticleMeta = {};
-    articleMeta[article] = {
+function getArticleList(articles: string[]): Article[] {
+  return articles.map(articleName => {
+    const { meta } = require(`../pages/articles/${articleName}.mdx`);
+    const article: Article = {
+      article: articleName,
       title: meta.title,
       description: meta.description,
       thumbnail: meta.thumbnail,
       categoryList: meta.category,
       postDate: new Date(meta.postDate).getTime(),
       lastUpdateDate: new Date(meta.lastUpdateDate).getTime()
-    }
+    };
 
-    return articleMeta;
+    return article;
   })
 }
 
-export default getArticleMetaList(data["article"]);
+export default getArticleList(data["article"]);
