@@ -28,7 +28,7 @@ const IndexPage: NextPage = () => {
       </Head>
       <Container maxWidth="md">
         <Typography component="h1" variant="h2" gutterBottom>
-          Welcom to Haphysics!
+          Welcome to Haphysics!
         </Typography>
         <Typography component="body" variant="body1" gutterBottom>
           <p>ようこそ、幸福の物理へ。</p>
