@@ -7,7 +7,7 @@ import React from "react";
 import { NextPage } from "next";
 import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
-import { articleList } from "./articles/_articleList";
+import { articleList } from "./articleList";
 
 const CategoryPage: NextPage = () => {
     let categories: string[] = [];

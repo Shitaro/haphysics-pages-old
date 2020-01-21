@@ -10,7 +10,7 @@ import Link from "next/link";
 import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
 import MediaCard from "../components/MediaCard";
-import { articleList } from "./articles/_articleList";
+import { articleList } from "./articleList";
 
 const IndexPage: NextPage = () => {
   articleList.sort((a,b) => a.postDate < b.postDate ? 1 : -1 );

@@ -1,5 +1,5 @@
-import { meta as helloMeta } from "./hello.mdx"
-import { meta as bonjourMeta } from "./bonjour.mdx"
+import { meta as helloMeta } from "./articles/hello.mdx";
+import { meta as bonjourMeta } from "./articles/bonjour.mdx";
 
 const metaDateConverter = (metaData: ArticleMeta) => {
     const {
