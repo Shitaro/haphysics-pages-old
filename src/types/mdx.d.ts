@@ -35,7 +35,16 @@ declare module '@mdx-js/react' {
   export class MDXProvider extends React.Component<MDXProviderProps> {}
 }
 
+type ArticleMeta = {
+  name: string,
+  title: string,
+  description: string,
+  thumbnail: string,
+  category: string[],
+  postDate: string
+}
 declare module '*.mdx' {
     let MDXComponent: (props: any) => JSX.Element
     export default MDXComponent
+    export const meta: ArticleMeta
 }
