@@ -10,11 +10,10 @@ import Link from "next/link";
 import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
 import MediaCard from "../components/MediaCard";
-import articleList from "../components/article-list.json";
+import { articleList } from "./articles/_articleList";
 
 const IndexPage: NextPage = () => {
   articleList.sort((a,b) => a.postDate < b.postDate ? 1 : -1 );
-
   return (
     <>
       <Head>
@@ -33,18 +32,18 @@ const IndexPage: NextPage = () => {
           Article List
         </Typography>
         {articleList.map(article => (
-            <>
-              <MediaCard
-                article={article.article}
-                title={article.title}
-                thumbnail={article.thumbnail}
-                description={article.description}
-                categoryList={article.categoryList}
-              />
-              <p />
-            </>
-          )
-        )}
+          <>
+            <MediaCard
+              key={article.name}
+              article={article.name}
+              title={article.title}
+              thumbnail={article.thumbnail}
+              description={article.description}
+              categoryList={article.categoryList}
+            />
+            <p />
+          </>
+        ))}
       </Container>
     </>
   )
