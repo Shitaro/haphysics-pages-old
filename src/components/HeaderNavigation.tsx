@@ -97,6 +97,7 @@ function HeaderNavigation() {
         <ToolBar>
           <Hidden xsDown>
             <LinkButton href="/">Home</LinkButton>
+            <LinkButton href="/category">Category</LinkButton>
           </Hidden>
           <SearchBar />
         </ToolBar>

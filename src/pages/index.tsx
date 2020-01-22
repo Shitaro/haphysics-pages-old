@@ -10,16 +10,10 @@ import Link from "next/link";
 import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
 import MediaCard from "../components/MediaCard";
-import articleMetaList from "../utils/ArticleMetaList";
+import { articleList } from "../assets/articleList";
 
 const IndexPage: NextPage = () => {
-  articleMetaList.sort((a,b) => {
-    const keyA = Object.keys(a)[0];
-    const keyB = Object.keys(b)[0];
-    return (
-      a[keyA].title < b[keyB].title ? 1 : -1
-    )
-  });
+  articleList.sort((a,b) => a.postDate < b.postDate ? 1 : -1 );
 
   return (
     <>
@@ -28,7 +22,7 @@ const IndexPage: NextPage = () => {
       </Head>
       <Container maxWidth="md">
         <Typography component="h1" variant="h2" gutterBottom>
-          Welcom to Haphysics!
+          Welcome to Haphysics!
         </Typography>
         <Typography component="body" variant="body1" gutterBottom>
           <p>ようこそ、幸福の物理へ。</p>
@@ -38,21 +32,19 @@ const IndexPage: NextPage = () => {
         <Typography component="h2" variant="h2" gutterBottom>
           Article List
         </Typography>
-        {articleMetaList.map(articleMeta => {
-          const article = Object.keys(articleMeta)[0];
-          return (
+        {articleList.map(article => (
             <>
               <MediaCard
-                article={article}
-                title={articleMeta[article].title}
-                thumbnail={articleMeta[article].thumbnail}
-                description={articleMeta[article].description}
-                categoryList={articleMeta[article].categoryList}
+                article={article.name}
+                title={article.title}
+                thumbnail={article.thumbnail}
+                description={article.description}
+                categoryList={article.categoryList}
               />
               <p />
             </>
           )
-        })}
+        )}
       </Container>
     </>
   )
