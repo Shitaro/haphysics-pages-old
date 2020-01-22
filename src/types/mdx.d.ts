@@ -1,3 +1,21 @@
+// Copyright (c) 2020 shitaro2016
+// 
+// This software is released under the MIT License.
+// https://opensource.org/licenses/MIT
+
+type ArticleMeta = {
+  name: string,
+  title: string,
+  description: string,
+  thumbnail: string,
+  category: string[],
+  postDate: string
+}
+
+// This module is:
+// Copyright (c) Compositor and Zeit, Inc.
+// Released under the MIT license in mdx, https://mdxjs.com/advanced/typescript
+// See https://opensource.org/licenses/MIT
 declare module '@mdx-js/react' {
   import * as React from 'react'
   type ComponentType =
@@ -35,15 +53,10 @@ declare module '@mdx-js/react' {
   export class MDXProvider extends React.Component<MDXProviderProps> {}
 }
 
-type ArticleMeta = {
-  name: string,
-  title: string,
-  description: string,
-  thumbnail: string,
-  category: string[],
-  postDate: string
-}
-
+// This module is:
+// Copyright (c) Compositor and Zeit, Inc.
+// Released under the MIT license in mdx, https://mdxjs.com/advanced/typescript
+// See https://opensource.org/licenses/MIT
 declare module '*.mdx' {
     let MDXComponent: (props: any) => JSX.Element
     export default MDXComponent

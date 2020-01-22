@@ -13,7 +13,7 @@
 // are:
 // Copyright (c) Michael Novotny
 // Released under the MIT license in remark-mdx-metadata, https://github.com/manovotny/remark-mdx-metadata
-// see https://opensource.org/licenses/ISC
+// see https://opensource.org/licenses/MIT
 
 const fs = require('fs')
 const path = require("path")
