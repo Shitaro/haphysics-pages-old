@@ -10,7 +10,7 @@ import Link from "next/link";
 import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
 import MediaCard from "../components/MediaCard";
-import articleList from "../components/article-list.json";
+import { articleList } from "../assets/articleList";
 
 const IndexPage: NextPage = () => {
   articleList.sort((a,b) => a.postDate < b.postDate ? 1 : -1 );
@@ -35,7 +35,7 @@ const IndexPage: NextPage = () => {
         {articleList.map(article => (
             <>
               <MediaCard
-                article={article.article}
+                article={article.name}
                 title={article.title}
                 thumbnail={article.thumbnail}
                 description={article.description}

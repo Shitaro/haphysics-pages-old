@@ -7,11 +7,11 @@ import React from "react";
 import { NextPage } from "next";
 import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
-import articleList from "../components/article-list.json";
+import { articleList } from "../assets/articleList";
 
 const CategoryPage: NextPage = () => {
     let categories: string[] = [];
-    articleList.forEach(article => article.categoryList.forEach(c => categories.push(c)))
+    articleList.forEach(article => article.categoryList.forEach((c: string) => categories.push(c)))
     categories = Array.from(new Set(categories.sort()))
 
     return (
