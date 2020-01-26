@@ -8,12 +8,18 @@ import { NextPage } from "next";
 import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
 import { articleList } from "../assets/articleList";
+import Link from "next/link";
+
+function kebabCase(str:string): string {
+    return str.split(/[_\s]/g).map(match => match.toLowerCase()).join("-");
+}
 
 const CategoryPage: NextPage = () => {
     let categories: string[] = [];
     articleList.forEach(article => article.categoryList.forEach((c: string) => categories.push(c)))
     categories = Array.from(new Set(categories.sort()))
 
+    console.log(kebabCase("Hello World"))
     return (
         <>
             <Container maxWidth="md">
@@ -25,6 +31,9 @@ const CategoryPage: NextPage = () => {
                         </Typography>
                     ))}
                 </Typography>
+                <Link href="/category/[category]" as={`/category/${kebabCase("Hello world")}`}>
+                    <a>Go to Hello Category</a>
+                </Link>
             </Container>
         </>
     )
