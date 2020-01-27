@@ -21,6 +21,18 @@ const withMDX = require("@next/mdx")({
 });
 
 const readdir = util.promisify(fs.readdir);
+const articleList = require('./src/assets/article-list.json')
+function kebabCase(str){
+    return str.split(/[_\s]/g).map(match => match.toLowerCase()).join("-");
+}
+
+const makeUniqueCategory = articleList => {
+    let categoryList = [];
+    articleList.forEach(article => {
+        categoryList.push(...article.category.map(kebabCase));
+    });
+    return [...new Set(categoryList)];
+}
 
 module.exports = withMDX({
     pageExtensions: ["mdx", "tsx"],
@@ -30,6 +42,11 @@ module.exports = withMDX({
             '/': { page: '/' },
             '/category': { page: '/category' }
         }
+
+        const categories = makeUniqueCategory(articleList);
+        categories.forEach(category => {
+            paths[`/category/${category}`] = { page: '/category/[category]', query: { category: category }}
+        })
 
         const articles = await readdir("./src/pages/articles");
 
