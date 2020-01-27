@@ -53,11 +53,8 @@ declare module '@mdx-js/react' {
   export class MDXProvider extends React.Component<MDXProviderProps> {}
 }
 
-// This module is:
-// Copyright (c) Compositor and Zeit, Inc.
-// Released under the MIT license in mdx, https://mdxjs.com/advanced/typescript
-// See https://opensource.org/licenses/MIT
 declare module '*.mdx' {
-    let MDXComponent: (props: any) => JSX.Element
-    export default MDXComponent
+    let MDXComponent: (props: any) => JSX.Element;
+    export default MDXComponent;
+    export const meta: ArticleMeta;
 }
