@@ -21,21 +21,6 @@ const mdx = require('@mdx-js/mdx')
 const { parse } = require("@babel/parser");
 const traverse = require("@babel/traverse").default;
 
-const low = require('lowdb')
-const lodashId = require('lodash-id')
-const FileSync = require('lowdb/adapters/FileSync')
-
-try {
-    fs.unlinkSync("./src/assets/db.json")
-} catch (err) {
-}
-
-const adapter = new FileSync('./src/assets/db.json')
-const db = low(adapter)
-db._.mixin(lodashId)
-
-db.defaults({ articles: [], categoryTable: [], categoryMapTable: [] }).write();
-
 const kebabCase = str => {
     return str.split(/[_\s]/g).map(match => match.toLowerCase()).join("-");
 }
@@ -100,45 +85,15 @@ const extractMeta = (options = {}) => {
                 });
             }
         });
-        const metaObj = { id: lodashId.createId(), name: options.articleName ,...properties };
+        const metaObj = { name: options.articleName ,...properties };
         articleList.push(metaObj);
-
-        const categories = [];
-        metaObj.category.forEach(c => {
-            const categoryTable = db.get("categoryTable");
-            if (categoryTable.find({ name: c }).value()) {
-                return
-            }
-            const categoryId = categoryTable.insert({ name: c, kebab: kebabCase(c) }).write().id;
-            categories.push(categoryId);
-        })
-
-        const {
-            category: rowCategoryList,
-            ...rest
-        } = metaObj;
-
-        const categoryId = rowCategoryList.map(c => {
-            return db.get("categoryTable").find({ name: c }).value().id;
-        })
-
-        db
-        .get("articles")
-        .insert({
-                ...rest,
-                categoryId: categoryId
-        }).write()
-
-        categoryId.forEach(cId => {
-            db.get("categoryMapTable").insert({articleId: metaObj.id, categoryId: cId }).write()
-        })
     }
 }
 
 // Read all articles written by .mdx from "./pages/articles" directory
 fs.readdirSync("./src/pages/articles").forEach(article => {
     const articleName = path.parse(article).name;
-    // "If you’re using MDX directly, they can be passed like so:"
+    // "If you're using MDX directly, they can be passed like so:"
     // [Reference](https://mdxjs.com/advanced/plugins)
     const mdxText = fs.readFileSync(`./src/pages/articles/${article}`, "utf8");
     mdx.sync(mdxText, {
