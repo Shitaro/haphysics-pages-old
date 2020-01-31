@@ -27,7 +27,7 @@ const Page: NextPage = () => {
                 {articleNameList(categoryName).map(articleName => {
                     return (
                         <>
-                            <Link href={`/articles/${articleName}`} as={`/post/${articleName}`}>
+                            <Link href="/articles/[article]" as={`/articles/${articleName}`}>
                                 <a>Go to {articleName}</a>
                             </Link>
                             <p />

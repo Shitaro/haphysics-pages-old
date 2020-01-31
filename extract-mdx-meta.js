@@ -90,12 +90,12 @@ const extractMeta = (options = {}) => {
     }
 }
 
-// Read all articles written by .mdx from "./pages/articles" directory
-fs.readdirSync("./src/pages/articles").forEach(article => {
+// Read all articles written by .mdx from "/src/contents" directory
+fs.readdirSync("./src/contents").forEach(article => {
     const articleName = path.parse(article).name;
     // "If you're using MDX directly, they can be passed like so:"
     // [Reference](https://mdxjs.com/advanced/plugins)
-    const mdxText = fs.readFileSync(`./src/pages/articles/${article}`, "utf8");
+    const mdxText = fs.readFileSync(`./src/contents/${article}`, "utf8");
     mdx.sync(mdxText, {
         remarkPlugins: [
             [extractMeta, { articleName: articleName }]

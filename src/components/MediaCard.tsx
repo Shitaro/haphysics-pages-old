@@ -37,7 +37,7 @@ const MediaCard: React.FC<Props> = props => {
   const classes = useStyles();
   return (
     <Card className={classes.card}>
-      <Link href={`/articles/${props.article}`} as={`/post/${props.article}`} passHref>
+      <Link href="/articles/[article]" as={`/articles/${props.article}`} passHref>
         <CardActionArea component="a">
           <CardMedia
             className={classes.media}

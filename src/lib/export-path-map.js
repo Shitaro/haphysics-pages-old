@@ -29,14 +29,14 @@ async function exportPathMap() {
 
     const categories = makeUniqueCategory(articleList);
     categories.forEach(category => {
-        paths[`/category/${category}`] = { page: '/category/[category]', query: { category: category }}
+        paths[`/category/${category}`] = { page: '/category/[category]', query: { category: category } }
     })
 
-    const articles = await readdir("./src/pages/articles");
+    const articles = await readdir("./src/contents");
 
     articles.forEach(article => {
-        const articlePath = path.parse(article).name;
-        paths[`/post/${articlePath}`] = { page: `/articles/${articlePath}` }
+        const articleName = path.parse(article).name;
+        paths[`/articles/${articleName}`] = { page: "/articles/[article]", query: { article: articleName } }
     });
 
     return paths;
