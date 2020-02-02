@@ -8,8 +8,8 @@ import { NextPage } from "next";
 import Link from "next/link";
 import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
-import articleMetaList from "../../assets/article-meta-list.json"
-import categoryList from "../../assets/category-list.json";
+import categoryList from "../../assets/categoryList";
+import articleMetaList from "../../assets/articleMetaList";
 
 const getCategoryName = (id: string | string[]) => categoryList.find(category => category.id === id)?.name || "";
 
