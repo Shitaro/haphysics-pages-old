@@ -9,8 +9,22 @@ import Head from "next/head";
 import Link from "next/link";
 import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
-import MediaCard from "../components/MediaCard";
-import articleMetaList from "../assets/articleMetaList";
+import MediaCard, { ButtonLinkProps } from "../components/MediaCard";
+import articleMetaList, { ArticleMeta } from "../assets/articleMetaList";
+import categoryList from "../assets/categoryList";
+
+const getCategoryButtonList = (article: ArticleMeta) => {
+    const categoryButtonList: ButtonLinkProps[] = article.category.map(category => {
+      const categoryId = categoryList.find(c => c.name === category)!.id;
+
+      return {
+        name: category,
+        href: "/category/[category]",
+        as: `/category/${categoryId}`
+      }
+    })
+    return categoryButtonList;
+}
 
 const IndexPage: NextPage = () => {
   articleMetaList.sort((a,b) => a.postDate < b.postDate ? 1 : -1 );
@@ -32,18 +46,20 @@ const IndexPage: NextPage = () => {
         <Typography component="h2" variant="h2" gutterBottom>
           Article List
         </Typography>
-        {articleMetaList.map(article => (
+        {articleMetaList.map(article => {
+          const categoryButtonList = getCategoryButtonList(article);
+          return (
             <>
               <MediaCard
-                id={article.id}
                 title={article.title}
-                thumbnail={article.thumbnail}
+                href={`/articles/${article.id}`}
+                image={article.thumbnail}
                 description={article.description}
-                categoryList={article.category}
+                buttons={categoryButtonList}
               />
               <br />
             </>
-          )
+          )}
         )}
       </Container>
     </>

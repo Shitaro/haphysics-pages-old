@@ -5,7 +5,7 @@
 
 import data from "./article-meta-list.json";
 
-type ArticleMeta = {
+export type ArticleMeta = {
     id: string,
     title: string,
     description: string,
@@ -14,7 +14,7 @@ type ArticleMeta = {
     postDate: number,
 };
 
-type ArticleMetaList = ArticleMeta[];
+export type ArticleMetaList = ArticleMeta[];
 
 const articleMetaList: ArticleMetaList = data;
 

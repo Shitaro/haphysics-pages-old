@@ -9,13 +9,27 @@ import Link from "next/link";
 import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
 import categoryList from "../../assets/categoryList";
-import articleMetaList from "../../assets/articleMetaList";
+import articleMetaList, { ArticleMeta } from "../../assets/articleMetaList";
+import MediaCard, { ButtonLinkProps } from "../../components/MediaCard";
 
 const getCategoryName = (id: string | string[]) => categoryList.find(category => category.id === id)?.name || "";
 
 const getArticleList = (id: string | string[]) => {
     const category = getCategoryName(id);
     return articleMetaList.filter(article => article.category.includes(category));
+}
+
+const getCategoryButtonList = (article: ArticleMeta) => {
+    const categoryButtonList: ButtonLinkProps[] = article.category.map(category => {
+      const categoryId = categoryList.find(c => c.name === category)!.id;
+
+      return {
+        name: category,
+        href: "/category/[category]",
+        as: `/category/${categoryId}`
+      }
+    })
+    return categoryButtonList;
 }
 
 const Page: NextPage = () => {
@@ -29,11 +43,16 @@ const Page: NextPage = () => {
                     Category: {getCategoryName(category)}
                 </Typography>
                 {getArticleList(category).map(article => {
+                    const categoryButtonList = getCategoryButtonList(article);
                     return (
                         <>
-                            <Link href={`/articles/${article.id}`} >
-                                <a>Go to {article.title}</a>
-                            </Link>
+                            <MediaCard
+                                title={article.title}
+                                href={`/articles/${article.id}`}
+                                image={article.thumbnail}
+                                description={article.description}
+                                buttons={categoryButtonList}
+                            />
                             <br />
                         </>
                     )

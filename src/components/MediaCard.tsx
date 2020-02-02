@@ -4,7 +4,7 @@
 // https://opensource.org/licenses/MIT
 
 import React from "react";
-import Link from "next/link";
+import { LinkProps } from "next/link";
 import Card from "@material-ui/core/Card";
 import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
@@ -26,22 +26,27 @@ const useStyles = makeStyles(
   })
 );
 
-type Props = {
-  id: string,
-  thumbnail: string,
-  title: string,
-  categoryList: string[],
-  description: string,
+export type ButtonLinkProps = {
+  name: string,
+  href: string,
+  as?: string,
 }
 
-const MediaCard: React.FC<Props> = props => {
+type MediaCardProps = {
+  title: string,
+  description?: string,
+  image?: string,
+  buttons: ButtonLinkProps[]
+} & Pick<LinkProps, "href" | "as">;
+
+const MediaCard: React.FC<MediaCardProps> = props => {
   const classes = useStyles();
   return (
     <Card className={classes.card}>
-      <CardActionAreaLink href={`/articles/${props.id}`} >
+      <CardActionAreaLink href={props.href} as={props.as}>
           <CardMedia
             className={classes.media}
-            image={props.thumbnail}
+            image={props.image}
             title="Contemplative Reptile"
           />
           <CardContent>
@@ -54,18 +59,16 @@ const MediaCard: React.FC<Props> = props => {
           </CardContent>
       </CardActionAreaLink>
       <CardActions>
-        {props.categoryList.map(category => {
-          const categoryId: string = categoryList.find(e => e.name === category)!.id;
-          return (
+        {props.buttons.map(button => (
             <ButtonLink
-              href="/category/[category]"
-              as={`/category/${categoryId}`}
+              href={button.href}
+              as={button.as}
               color="primary"
               size="medium">
-              {category}
+              {button.name}
             </ButtonLink>
           )
-        })}
+        )}
       </CardActions>
     </Card>
   )
