@@ -14,6 +14,8 @@ import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles, createStyles } from "@material-ui/core";
 
+import categoryList from "../assets/category-list.json";
+
 const useStyles = makeStyles(
   createStyles({
     card: {
@@ -26,7 +28,7 @@ const useStyles = makeStyles(
 );
 
 type Props = {
-  article: string,
+  id: string,
   thumbnail: string,
   title: string,
   categoryList: string[],
@@ -37,7 +39,7 @@ const MediaCard: React.FC<Props> = props => {
   const classes = useStyles();
   return (
     <Card className={classes.card}>
-      <Link href="/articles/[article]" as={`/articles/${props.article}`} passHref>
+      <Link href={`/articles/${props.id}`} passHref>
         <CardActionArea component="a">
           <CardMedia
             className={classes.media}
@@ -55,11 +57,16 @@ const MediaCard: React.FC<Props> = props => {
         </CardActionArea>
       </Link>
       <CardActions>
-        {props.categoryList.map(category => (
-          <Button color="primary" size="small">
-            {category}
-          </Button>
-        ))}
+        {props.categoryList.map(category => {
+          const categoryId: string = categoryList.find(e => e.name === category)!.id;
+          return (
+            <Link href="/category/[category]" as={`/category/${categoryId}`} passHref>
+              <Button component="a" color="primary" size="small">
+                {category}
+              </Button>
+            </Link>
+          )
+        })}
       </CardActions>
     </Card>
   )

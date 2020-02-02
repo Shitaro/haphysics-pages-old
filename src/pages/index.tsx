@@ -35,7 +35,7 @@ const IndexPage: NextPage = () => {
         {articleMetaList.map(article => (
             <>
               <MediaCard
-                article={article.id}
+                id={article.id}
                 title={article.title}
                 thumbnail={article.thumbnail}
                 description={article.description}

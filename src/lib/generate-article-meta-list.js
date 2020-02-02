@@ -7,7 +7,7 @@ const fs = require("fs");
 const path = require("path");
 const getArticleMeta = require("./get-article-meta");
 
-const articleMetaList = fs.readdirSync("./src/contents").map(article => {
+const articleMetaList = fs.readdirSync("./src/pages/articles").map(article => {
     const { postDate, ...rest } = getArticleMeta(article);
     return {
         id: path.parse(article).name,

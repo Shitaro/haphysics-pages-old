@@ -84,7 +84,7 @@ const extractMeta = () => {
 }
 
 function getArticleMeta(articleName) {
-    const mdxText = fs.readFileSync(`./src/contents/${articleName}`, "utf8");
+    const mdxText = fs.readFileSync(`./src/pages/articles/${articleName}`, "utf8");
 
     mdx.sync(mdxText, {
         remarkPlugins: [

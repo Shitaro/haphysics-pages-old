@@ -4,6 +4,7 @@
 // https://opensource.org/licenses/MIT
 
 import React from "react";
+import Container from "@material-ui/core/Container";
 import Typography from "@material-ui/core/Typography";
 import Divider from "@material-ui/core/Divider";
 import Table from "@material-ui/core/Table";
@@ -14,7 +15,9 @@ import TableRow from "@material-ui/core/TableRow";
 
 // Map Mui components to MDX
 // https://mdxjs.com/getting-started#mdxprovider
+// https://mdxjs.com/guides/wrapper-customization
 const components = {
+    wrapper: (props: any) => <Container {...props} maxWidth="md" />,
     p: Typography,
     h1: (props: any) => <Typography {...props} component="h1" variant="h2" />,
     h2: (props: any) => <Typography {...props} component="h2" variant="h3" />,

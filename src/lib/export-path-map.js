@@ -23,11 +23,11 @@ async function exportPathMap() {
     }
 
     categoryList.forEach(category => {
-        paths[`/category/${category.id}`] = { page: "/category/[category]", query: { category: category.id }}
+        paths[`/category/${category.id}`] = { page: `/category/[category]`, query: { category: category.id }}
     })
 
     articleMetaList.forEach(article => {
-        paths[`/articles/${article.id}`] = { page: "/articles/[article]", query: { article: article.id }}
+        paths[`/articles/${article.id}`] = { page: `/articles/${article.id}` }
     })
 
     return paths;

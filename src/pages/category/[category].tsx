@@ -11,8 +11,10 @@ import Container from "@material-ui/core/Container";
 import articleMetaList from "../../assets/article-meta-list.json"
 import categoryList from "../../assets/category-list.json";
 
+const getCategoryName = (id: string | string[]) => categoryList.find(category => category.id === id)?.name || "";
+
 const getArticleList = (id: string | string[]) => {
-    const category = categoryList.find(category => category.id === id)?.name || "";
+    const category = getCategoryName(id);
     return articleMetaList.filter(article => article.category.includes(category));
 }
 
@@ -24,12 +26,12 @@ const Page: NextPage = () => {
         <>
             <Container maxWidth="md">
                 <Typography component="h1" variant="h2" gutterBottom>
-                    Category: {category}
+                    Category: {getCategoryName(category)}
                 </Typography>
                 {getArticleList(category).map(article => {
                     return (
                         <>
-                            <Link href="/articles/[article]" as={`/articles/${article.id}`}>
+                            <Link href={`/articles/${article.id}`} >
                                 <a>Go to {article.title}</a>
                             </Link>
                             <br />
