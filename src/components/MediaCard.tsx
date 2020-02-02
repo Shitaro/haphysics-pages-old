@@ -10,10 +10,9 @@ import CardActionArea from '@material-ui/core/CardActionArea';
 import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
-import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles, createStyles } from "@material-ui/core";
-
+import LinkedButton from "./atoms/LinkedButton";
 import categoryList from "../assets/category-list.json";
 
 const useStyles = makeStyles(
@@ -60,11 +59,13 @@ const MediaCard: React.FC<Props> = props => {
         {props.categoryList.map(category => {
           const categoryId: string = categoryList.find(e => e.name === category)!.id;
           return (
-            <Link href="/category/[category]" as={`/category/${categoryId}`} passHref>
-              <Button component="a" color="primary" size="small">
-                {category}
-              </Button>
-            </Link>
+            <LinkedButton
+              href="/category/[category]"
+              as={`/category/${categoryId}`}
+              color="primary"
+              size="medium">
+              {category}
+            </LinkedButton>
           )
         })}
       </CardActions>

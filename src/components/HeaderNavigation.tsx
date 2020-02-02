@@ -4,14 +4,13 @@
 // https://opensource.org/licenses/MIT
 
 import React from "react";
-import Link from "next/link";
-import { fade, makeStyles, createStyles, Theme, createMuiTheme } from "@material-ui/core/styles";
+import { fade, makeStyles, createStyles, Theme } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import ToolBar from "@material-ui/core/Toolbar";
 import InputBase from "@material-ui/core/InputBase";
 import SearchIcon from "@material-ui/icons/Search";
-import Button from "@material-ui/core/Button";
 import Hidden from "@material-ui/core/Hidden";
+import LinkedButton from "./atoms/LinkedButton";
 
 const useStyles = makeStyles((theme: Theme) => 
   createStyles({
@@ -60,16 +59,6 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-const LinkButton: React.FC<{ href: string }> = props => {
-  return (
-    <Link href={props.href} passHref>
-      <Button component="a">
-        {props.children}
-      </Button>
-    </Link>
-  )
-}
-
 const SearchBar: React.FC = () => {
   const classes = useStyles();
   return (
@@ -96,8 +85,12 @@ function HeaderNavigation() {
       <AppBar position="fixed">
         <ToolBar>
           <Hidden xsDown>
-            <LinkButton href="/">Home</LinkButton>
-            <LinkButton href="/category">Category</LinkButton>
+            <LinkedButton href="/" size="large">
+              Home
+            </LinkedButton>
+            <LinkedButton href="/category" size="large">
+              Category
+            </LinkedButton>
           </Hidden>
           <SearchBar />
         </ToolBar>
