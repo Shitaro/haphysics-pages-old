@@ -15,15 +15,10 @@
 // Released under the MIT license in remark-mdx-metadata, https://github.com/manovotny/remark-mdx-metadata
 // see https://opensource.org/licenses/MIT
 
-const fs = require('fs')
-const path = require("path")
-const mdx = require('@mdx-js/mdx')
+const fs = require("fs");
+const mdx = require("@mdx-js/mdx");
 const { parse } = require("@babel/parser");
 const traverse = require("@babel/traverse").default;
-
-const kebabCase = str => {
-    return str.split(/[_\s]/g).map(match => match.toLowerCase()).join("-");
-}
 
 const parseOptions = {
     plugin: ["jsx"],
@@ -69,8 +64,7 @@ const getMetaIndex = children => {
     return metaIndex;
 }
 
-const articleList = [];
-const extractMeta = (options = {}) => {
+const extractMeta = () => {
     return tree => {
         const children = tree.children;
         const metaIndex = getMetaIndex(children);
@@ -85,30 +79,20 @@ const extractMeta = (options = {}) => {
                 });
             }
         });
-        const metaObj = { name: options.articleName ,...properties };
-        articleList.push(metaObj);
+        metaObj = {...properties}
     }
 }
 
-// Read all articles written by .mdx from "/src/contents" directory
-fs.readdirSync("./src/contents").forEach(article => {
-    const articleName = path.parse(article).name;
-    // "If you're using MDX directly, they can be passed like so:"
-    // [Reference](https://mdxjs.com/advanced/plugins)
-    const mdxText = fs.readFileSync(`./src/contents/${article}`, "utf8");
+function getArticleMeta(articleName) {
+    const mdxText = fs.readFileSync(`./src/pages/articles/${articleName}`, "utf8");
+
     mdx.sync(mdxText, {
         remarkPlugins: [
-            [extractMeta, { articleName: articleName }]
+            extractMeta
         ]
     });
-});
 
-// Write all meta data of articles to a JSON file
-fs.writeFile(
-    "./src/assets/article-list.json", // Set path to output json file containing names of all articles
-    JSON.stringify(articleList), // Convert { "article": ["article",...] } to JSON string
-    error => { // Handle error
-        if (error) throw error;
-        console.log("Finished to generate ./src/assets/article-list.json completely!");
-    }
-)
+    return metaObj;
+}
+
+module.exports = getArticleMeta;

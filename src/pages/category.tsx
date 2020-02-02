@@ -7,26 +7,25 @@ import React from "react";
 import { NextPage } from "next";
 import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
-import { articleList } from "../assets/articleList";
+import categoryList from "../assets/categoryList";
+import List from "@material-ui/core/List";
+import ListItemText from "@material-ui/core/ListItemText";
+import ListItemLink from "../components/atoms/ListItemLink";
 
 const CategoryPage: NextPage = () => {
-    let categories: string[] = [];
-    articleList.forEach(article => article.categoryList.forEach((c: string) => categories.push(c)))
-    categories = Array.from(new Set(categories.sort()))
-
     return (
-        <>
-            <Container maxWidth="md">
-                <Typography component="h1" variant="h2" gutterBottom>
-                    Category
-                    {categories.map(category => (
-                        <Typography component="h2" variant="h4" gutterBottom>
-                            {category}
-                        </Typography>
-                    ))}
-                </Typography>
-            </Container>
-        </>
+        <Container maxWidth="md">
+            <Typography component="h1" variant="h2" gutterBottom>
+                Category List
+            </Typography>
+            <List>
+                {categoryList.map(category => (
+                    <ListItemLink href="/category/[category]" as={`/category/${category.id}`}>
+                        <ListItemText primary={category.name} />
+                    </ListItemLink>
+                ))}
+            </List>
+        </Container>
     )
 }
 

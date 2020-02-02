@@ -1,4 +1,5 @@
 node_modules
 .next
 out
-**/article-list.json
+**/article-meta-list.json
+**/category-list.json

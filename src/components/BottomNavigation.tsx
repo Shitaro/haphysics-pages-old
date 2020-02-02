@@ -4,13 +4,12 @@
 // https://opensource.org/licenses/MIT
 
 import React from 'react';
-import Link from "next/link";
 import { makeStyles, createStyles, Theme, createMuiTheme } from '@material-ui/core/styles';
 import BottomNavigation from '@material-ui/core/BottomNavigation';
-import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
 import HomeIcon from "@material-ui/icons/Home";
 import CategoryIcon from "@material-ui/icons/Folder";
 import Hidden from "@material-ui/core/Hidden";
+import BottomNavigationActionLink from "./atoms/BottomNavigationActionLink";
 
 const bottomNavHeight = createMuiTheme().spacing(7);
 
@@ -41,28 +40,24 @@ export default function SimpleBottomNavigation() {
             <BottomNavigation
                 className={classes.root}
             >
-                <Link href="/" passHref>
-                    <BottomNavigationAction
-                        label="HOME"
-                        icon={<HomeIcon />}
-                        showLabel
-                        classes={{
-                            root: classes.iconRoot
-                        }}
-                        component="a"
-                    />
-                </Link>
-                <Link href="/category" passHref>
-                    <BottomNavigationAction
-                        label="CATEGORY"
-                        icon={<CategoryIcon />}
-                        showLabel
-                        classes={{
-                            root: classes.iconRoot
-                        }}
-                        component="a"
-                    />
-                </Link>
+                <BottomNavigationActionLink
+                    href="/"
+                    label="HOME"
+                    icon={<HomeIcon />}
+                    showLabel
+                    classes={{
+                        root: classes.iconRoot
+                    }}
+                />
+                <BottomNavigationActionLink
+                    href="/category"
+                    label="CATEGORY"
+                    icon={<CategoryIcon />}
+                    showLabel
+                    classes={{
+                        root: classes.iconRoot
+                    }}
+                />
             </BottomNavigation>
         </Hidden>
     );
