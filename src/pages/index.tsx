@@ -9,6 +9,7 @@ import Head from "next/head";
 import Link from "next/link";
 import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
+import Grid from "@material-ui/core/Grid"
 import MediaCard, { ButtonLinkProps } from "../components/MediaCard";
 import articleMetaList, { ArticleMeta } from "../assets/articleMetaList";
 import categoryList from "../assets/categoryList";
@@ -46,21 +47,22 @@ const IndexPage: NextPage = () => {
         <Typography component="h2" variant="h2" gutterBottom>
           Article List
         </Typography>
-        {articleMetaList.map(article => {
-          const categoryButtonList = getCategoryButtonList(article);
-          return (
-            <>
-              <MediaCard
-                title={article.title}
-                href={`/articles/${article.id}`}
-                image={article.thumbnail}
-                description={article.description}
-                buttons={categoryButtonList}
-              />
-              <br />
-            </>
+        <Grid container spacing={4}>
+          {articleMetaList.map(article => {
+            const categoryButtonList = getCategoryButtonList(article);
+            return (
+              <Grid item xs={12} sm={6}>
+                <MediaCard
+                  title={article.title}
+                  href={`/articles/${article.id}`}
+                  image={article.thumbnail}
+                  description={article.description}
+                  buttons={categoryButtonList}
+                />
+              </Grid>
+            )}
           )}
-        )}
+        </Grid>
       </Container>
     </>
   )

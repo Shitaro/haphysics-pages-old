@@ -5,9 +5,9 @@
 
 import { useRouter } from "next/router";
 import { NextPage } from "next";
-import Link from "next/link";
 import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
+import Grid from "@material-ui/core/Grid";
 import categoryList from "../../assets/categoryList";
 import articleMetaList, { ArticleMeta } from "../../assets/articleMetaList";
 import MediaCard, { ButtonLinkProps } from "../../components/MediaCard";
@@ -42,10 +42,11 @@ const Page: NextPage = () => {
                 <Typography component="h1" variant="h2" gutterBottom>
                     Category: {getCategoryName(category)}
                 </Typography>
-                {getArticleList(category).map(article => {
+                <Grid container spacing={4}>
+                    {getArticleList(category).map(article => {
                     const categoryButtonList = getCategoryButtonList(article);
                     return (
-                        <>
+                        <Grid item xs={12} sm={6}>
                             <MediaCard
                                 title={article.title}
                                 href={`/articles/${article.id}`}
@@ -53,10 +54,10 @@ const Page: NextPage = () => {
                                 description={article.description}
                                 buttons={categoryButtonList}
                             />
-                            <br />
-                        </>
+                        </Grid>
                     )
                 })}
+                </Grid>
             </Container>
         </>
     )
