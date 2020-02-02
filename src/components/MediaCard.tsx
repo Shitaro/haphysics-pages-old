@@ -6,7 +6,6 @@
 import React from "react";
 import Link from "next/link";
 import Card from "@material-ui/core/Card";
-import CardActionArea from '@material-ui/core/CardActionArea';
 import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
@@ -14,6 +13,7 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles, createStyles } from "@material-ui/core";
 import ButtonLink from "./atoms/ButtonLink";
 import categoryList from "../assets/category-list.json";
+import CardActionAreaLink from "./atoms/CardActionAreaLink";
 
 const useStyles = makeStyles(
   createStyles({
@@ -38,8 +38,7 @@ const MediaCard: React.FC<Props> = props => {
   const classes = useStyles();
   return (
     <Card className={classes.card}>
-      <Link href={`/articles/${props.id}`} passHref>
-        <CardActionArea component="a">
+      <CardActionAreaLink href={`/articles/${props.id}`} >
           <CardMedia
             className={classes.media}
             image={props.thumbnail}
@@ -53,8 +52,7 @@ const MediaCard: React.FC<Props> = props => {
               {props.description}
             </Typography>
           </CardContent>
-        </CardActionArea>
-      </Link>
+      </CardActionAreaLink>
       <CardActions>
         {props.categoryList.map(category => {
           const categoryId: string = categoryList.find(e => e.name === category)!.id;
