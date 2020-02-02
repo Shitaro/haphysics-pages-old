@@ -3,23 +3,18 @@
 // This software is released under the MIT License.
 // https://opensource.org/licenses/MIT
 
-const fs = require('fs');
-const util = require("util");
-const path = require('path');
-
-const readdir = util.promisify(fs.readdir);
-const articleList = require('../assets/article-list.json')
-function kebabCase(str){
-    return str.split(/[_\s]/g).map(match => match.toLowerCase()).join("-");
-}
-
-const makeUniqueCategory = articleList => {
-    let categoryList = [];
-    articleList.forEach(article => {
-        categoryList.push(...article.category.map(kebabCase));
-    });
-    return [...new Set(categoryList)];
-}
+// Write database
+const articleMetaList = require("./generate-article-meta-list");
+const categoryList = require("./make-category-list")(articleMetaList);
+const writeDatabase = require("./write-database");
+writeDatabase({
+    objectList: categoryList,
+    jsonName: "category-list"
+});
+writeDatabase({
+    objectList: articleMetaList,
+    jsonName: "article-meta-list"
+})
 
 async function exportPathMap() {
     const paths = {
@@ -27,17 +22,13 @@ async function exportPathMap() {
         '/category': { page: '/category' }
     }
 
-    const categories = makeUniqueCategory(articleList);
-    categories.forEach(category => {
-        paths[`/category/${category}`] = { page: '/category/[category]', query: { category: category } }
+    categoryList.forEach(category => {
+        paths[`/category/${category.id}`] = { page: "/category/[category]", query: { category: category.id }}
     })
 
-    const articles = await readdir("./src/contents");
-
-    articles.forEach(article => {
-        const articleName = path.parse(article).name;
-        paths[`/articles/${articleName}`] = { page: "/articles/[article]", query: { article: articleName } }
-    });
+    articleMetaList.forEach(article => {
+        paths[`/articles/${article.id}`] = { page: "/articles/[article]", query: { article: article.id }}
+    })
 
     return paths;
 }

@@ -1,36 +1,38 @@
+// Copyright (c) 2020 shitaro2016
+// 
+// This software is released under the MIT License.
+// https://opensource.org/licenses/MIT
+
 import { useRouter } from "next/router";
 import { NextPage } from "next";
 import Link from "next/link";
 import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
-import { articleList, categoryList } from "../../assets/articleList";
+import articleMetaList from "../../assets/article-meta-list.json"
+import categoryList from "../../assets/category-list.json";
 
-const articleNameList = (category: string): string[] => {
-    const articleNameList: string[] = [];
-    articleList.filter(article => article.categoryList.includes(category)).forEach(article => {
-        articleNameList.push(article.name);
-    });
-    return articleNameList;
+const getArticleList = (id: string | string[]) => {
+    const category = categoryList.find(category => category.id === id)?.name || "";
+    return articleMetaList.filter(article => article.category.includes(category));
 }
 
 const Page: NextPage = () => {
     const router = useRouter();
-
-    const categoryName = categoryList.find(category => category.kebabCase === router.query.category)?.categoryName || router.pathname;
+    const category = router.query.category;
 
     return (
         <>
             <Container maxWidth="md">
                 <Typography component="h1" variant="h2" gutterBottom>
-                    Category: {categoryName}
+                    Category: {category}
                 </Typography>
-                {articleNameList(categoryName).map(articleName => {
+                {getArticleList(category).map(article => {
                     return (
                         <>
-                            <Link href="/articles/[article]" as={`/articles/${articleName}`}>
-                                <a>Go to {articleName}</a>
+                            <Link href="/articles/[article]" as={`/articles/${article.id}`}>
+                                <a>Go to {article.title}</a>
                             </Link>
-                            <p />
+                            <br />
                         </>
                     )
                 })}

@@ -8,7 +8,7 @@ import { NextPage } from "next";
 import Link from "next/link";
 import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
-import { categoryList } from "../assets/articleList";
+import categoryList from "../assets/category-list.json";
 
 const CategoryPage: NextPage = () => {
     return (
@@ -20,8 +20,8 @@ const CategoryPage: NextPage = () => {
                 {categoryList.map(category => {
                     return (
                         <>
-                            <Link href="/category/[category]" as={`/category/${category.kebabCase}`}>
-                                <a>{category.categoryName}</a>
+                            <Link href="/category/[category]" as={`/category/${category.id}`}>
+                                <a>{category.name}</a>
                             </Link>
                             <p />
                         </>

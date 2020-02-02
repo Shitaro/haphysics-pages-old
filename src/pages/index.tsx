@@ -10,10 +10,10 @@ import Link from "next/link";
 import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
 import MediaCard from "../components/MediaCard";
-import { articleList } from "../assets/articleList";
+import articleMetaList from "../assets/article-meta-list.json";
 
 const IndexPage: NextPage = () => {
-  articleList.sort((a,b) => a.postDate < b.postDate ? 1 : -1 );
+  articleMetaList.sort((a,b) => a.postDate < b.postDate ? 1 : -1 );
 
   return (
     <>
@@ -32,16 +32,16 @@ const IndexPage: NextPage = () => {
         <Typography component="h2" variant="h2" gutterBottom>
           Article List
         </Typography>
-        {articleList.map(article => (
+        {articleMetaList.map(article => (
             <>
               <MediaCard
-                article={article.name}
+                article={article.id}
                 title={article.title}
                 thumbnail={article.thumbnail}
                 description={article.description}
-                categoryList={article.categoryList}
+                categoryList={article.category}
               />
-              <p />
+              <br />
             </>
           )
         )}
