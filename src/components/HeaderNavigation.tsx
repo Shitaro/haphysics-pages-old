@@ -10,7 +10,7 @@ import ToolBar from "@material-ui/core/Toolbar";
 import InputBase from "@material-ui/core/InputBase";
 import SearchIcon from "@material-ui/icons/Search";
 import Hidden from "@material-ui/core/Hidden";
-import LinkedButton from "./atoms/LinkedButton";
+import ButtonLink from "./atoms/ButtonLink";
 
 const useStyles = makeStyles((theme: Theme) => 
   createStyles({
@@ -85,12 +85,12 @@ function HeaderNavigation() {
       <AppBar position="fixed">
         <ToolBar>
           <Hidden xsDown>
-            <LinkedButton href="/" size="large">
+            <ButtonLink href="/" size="large">
               Home
-            </LinkedButton>
-            <LinkedButton href="/category" size="large">
+            </ButtonLink>
+            <ButtonLink href="/category" size="large">
               Category
-            </LinkedButton>
+            </ButtonLink>
           </Hidden>
           <SearchBar />
         </ToolBar>

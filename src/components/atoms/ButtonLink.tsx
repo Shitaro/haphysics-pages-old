@@ -7,9 +7,9 @@ import React from "react";
 import Link, { LinkProps } from "next/link";
 import Button, { ButtonProps } from "@material-ui/core/Button";
 
-type LinkedButtonProps = Omit<ButtonProps, "href" | "classes"> & Pick<LinkProps, "href" | "as" >
+type ButtonLinkProps = Omit<ButtonProps, "href" | "classes"> & Pick<LinkProps, "href" | "as" >
 
-const LinkedButton = React.forwardRef<any, LinkedButtonProps>(
+const ButtonLink = React.forwardRef<any, ButtonLinkProps>(
     ({href, as, ...props}, ref) => (
         <Link href={href} as={as} passHref>
             <Button ref={ref} {...props} />
@@ -17,6 +17,4 @@ const LinkedButton = React.forwardRef<any, LinkedButtonProps>(
     )
 )
 
-LinkedButton.displayName = "LinkedButton";
-
-export default LinkedButton;
+export default ButtonLink;
