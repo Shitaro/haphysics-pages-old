@@ -12,7 +12,7 @@ function writeDatabase(props) {
         JSON.stringify(props.objectList), // Convert { "article": ["article",...] } to JSON string
         error => { // Handle error
             if (error) throw error;
-            console.log("Finished to generate ./src/assets/test.json completely!");
+            console.log(`Finished to generate ./src/assets/${props.jsonName}.json completely!`);
         }
     )
 }
