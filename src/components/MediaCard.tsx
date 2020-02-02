@@ -4,15 +4,16 @@
 // https://opensource.org/licenses/MIT
 
 import React from "react";
-import Link from "next/link";
+import { LinkProps } from "next/link";
 import Card from "@material-ui/core/Card";
-import CardActionArea from '@material-ui/core/CardActionArea';
 import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
-import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles, createStyles } from "@material-ui/core";
+import ButtonLink from "./atoms/ButtonLink";
+import categoryList from "../assets/category-list.json";
+import CardActionAreaLink from "./atoms/CardActionAreaLink";
 
 const useStyles = makeStyles(
   createStyles({
@@ -25,23 +26,27 @@ const useStyles = makeStyles(
   })
 );
 
-type Props = {
-  article: string,
-  thumbnail: string,
-  title: string,
-  categoryList: string[],
-  description: string,
+export type ButtonLinkProps = {
+  name: string,
+  href: string,
+  as?: string,
 }
 
-const MediaCard: React.FC<Props> = props => {
+type MediaCardProps = {
+  title: string,
+  description?: string,
+  image?: string,
+  buttons: ButtonLinkProps[]
+} & Pick<LinkProps, "href" | "as">;
+
+const MediaCard: React.FC<MediaCardProps> = props => {
   const classes = useStyles();
   return (
     <Card className={classes.card}>
-      <Link href={`/articles/${props.article}`} as={`/post/${props.article}`} passHref>
-        <CardActionArea component="a">
+      <CardActionAreaLink href={props.href} as={props.as}>
           <CardMedia
             className={classes.media}
-            image={props.thumbnail}
+            image={props.image}
             title="Contemplative Reptile"
           />
           <CardContent>
@@ -52,14 +57,18 @@ const MediaCard: React.FC<Props> = props => {
               {props.description}
             </Typography>
           </CardContent>
-        </CardActionArea>
-      </Link>
+      </CardActionAreaLink>
       <CardActions>
-        {props.categoryList.map(category => (
-          <Button color="primary" size="small">
-            {category}
-          </Button>
-        ))}
+        {props.buttons.map(button => (
+            <ButtonLink
+              href={button.href}
+              as={button.as}
+              color="primary"
+              size="medium">
+              {button.name}
+            </ButtonLink>
+          )
+        )}
       </CardActions>
     </Card>
   )

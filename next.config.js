@@ -6,12 +6,11 @@
 // How to configure to use MDX in Next.js
 // https://mdxjs.com/getting-started/next
 
-const fs = require('fs');
-const util = require("util");
-const path = require('path');
 const remarkMath = require('remark-math');
 const rehypeKatex = require('rehype-katex');
 const rehypePrism = require("@mapbox/rehype-prism");
+const exportPathMap = require("./src/lib/export-path-map");
+
 const withMDX = require("@next/mdx")({
     extension: /\.mdx?$/,
     options: {
@@ -20,23 +19,7 @@ const withMDX = require("@next/mdx")({
     }
 });
 
-const readdir = util.promisify(fs.readdir);
-
 module.exports = withMDX({
     pageExtensions: ["mdx", "tsx"],
-
-    exportPathMap: async function () {
-        const paths = {
-            '/': { page: '/' }
-        }
-
-        const articles = await readdir("./src/pages/articles");
-
-        articles.forEach(article => {
-            const articlePath = path.parse(article).name;
-            paths[`/post/${articlePath}`] = { page: `/articles/${articlePath}` }
-        });
-
-        return paths;
-    }
+    exportPathMap
 });
