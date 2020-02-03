@@ -3,3 +3,4 @@ node_modules
 out
 **/article-meta-list.json
 **/category-list.json
+**/category-map-list.json
