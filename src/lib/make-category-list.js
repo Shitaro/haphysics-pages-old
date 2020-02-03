@@ -9,7 +9,6 @@ function kebabCase(str){
 
 const makeCategoryList = articleMetaList => {
     const categoryList = [... new Set(articleMetaList.map(meta => meta.category).reduce((acc, val) => acc.concat(val), []))]
-    console.log(categoryList)
     return categoryList.map(category => (
         {
             id: kebabCase(category),
