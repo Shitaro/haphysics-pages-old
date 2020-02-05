@@ -7,7 +7,8 @@ import data from "./category-list.json";
 
 type Category = {
     id: string,
-    name: string,
+    ja: string,
+    en: string,
 };
 
 type CategoryList = Category[];

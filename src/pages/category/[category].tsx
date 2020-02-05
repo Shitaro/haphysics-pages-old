@@ -9,57 +9,55 @@ import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
 import categoryList from "../../assets/categoryList";
-import articleMetaList, { ArticleMeta } from "../../assets/articleMetaList";
+import articleMetaList from "../../assets/articleMetaList";
+import categoryMapList from "../../assets/categoryMapList";
 import MediaCard, { ButtonLinkProps } from "../../components/MediaCard";
 
-const getCategoryName = (id: string | string[]) => categoryList.find(category => category.id === id)?.name || "";
+const getCategoryName = (id: string | string[]) => categoryList.find(category => category.id === id)?.ja || "";
 
-const getArticleList = (id: string | string[]) => {
-    const category = getCategoryName(id);
-    return articleMetaList.filter(article => article.category.includes(category));
-}
+const getArticleList = (categoryId: string | string[]) => (
+    categoryMapList.filter(categoryMap => categoryMap.categoryId === categoryId)
+                   .map(({articleId}) => articleMetaList.find(article => article.id === articleId)!)
+)
 
-const getCategoryButtonList = (article: ArticleMeta) => {
-    const categoryButtonList: ButtonLinkProps[] = article.category.map(category => {
-      const categoryId = categoryList.find(c => c.name === category)!.id;
+const getCategoryButtonList = (articleId: string) :ButtonLinkProps[] => (
+  categoryMapList.filter(props => props.articleId === articleId).map(({categoryId}) => {
+    const category = categoryList.find(({id}) => id === categoryId)!;
 
-      return {
-        name: category,
-        href: "/category/[category]",
-        as: `/category/${categoryId}`
-      }
-    })
-    return categoryButtonList;
-}
+    return {
+      name: category.ja,
+      href: "/category/[category]",
+      as: `/category/${category.id}`
+    }
+  })
+)
 
 const Page: NextPage = () => {
     const router = useRouter();
-    const category = router.query.category;
+    const categoryId = router.query.category;
 
     return (
-        <>
-            <Container maxWidth="md">
-                <Typography component="h1" variant="h2" gutterBottom>
-                    Category: {getCategoryName(category)}
-                </Typography>
-                <Grid container spacing={4}>
-                    {getArticleList(category).map(article => {
-                    const categoryButtonList = getCategoryButtonList(article);
-                    return (
-                        <Grid item xs={12} sm={6}>
-                            <MediaCard
-                                title={article.title}
-                                href={`/articles/${article.id}`}
-                                image={article.thumbnail}
-                                description={article.description}
-                                buttons={categoryButtonList}
-                            />
-                        </Grid>
-                    )
-                })}
-                </Grid>
-            </Container>
-        </>
+        <Container maxWidth="md">
+            <Typography component="h1" variant="h2" gutterBottom>
+                Category: {getCategoryName(categoryId)}
+            </Typography>
+            <Grid container spacing={4}>
+                {getArticleList(categoryId).map(article => {
+                const categoryButtonList = getCategoryButtonList(article.id);
+                return (
+                    <Grid item xs={12} sm={6}>
+                        <MediaCard
+                            title={article.title}
+                            href={`/articles/${article.id}`}
+                            image={article.thumbnail}
+                            description={article.description}
+                            buttons={categoryButtonList}
+                        />
+                    </Grid>
+                )
+            })}
+            </Grid>
+        </Container>
     )
 }
 
