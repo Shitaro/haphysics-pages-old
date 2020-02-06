@@ -12,18 +12,17 @@ import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid"
 import MediaCard, { ButtonLinkProps } from "../components/MediaCard";
 import articleMetaList, { ArticleMeta } from "../assets/articleMetaList";
-import categoryList from "../assets/categoryList";
-import categoryMapList from "../assets/categoryMapList";
+import { findCategoryById } from "../assets/categoryList";
 import ButtonLink from "../components/atoms/ButtonLink";
 
 const getCategoryButtonList = (article: ArticleMeta) :ButtonLinkProps[] => (
-  categoryMapList.filter(({articleId}) => articleId === article.id).map(({categoryId}) => {
-    const category = categoryList.find(({id}) => id === categoryId)!;
+  article.category.map(category => {
+    const categoryObj = findCategoryById(category)!;
 
     return {
-      name: category.ja,
+      name: categoryObj.ja,
       href: "/category/[category]",
-      as: `/category/${category.id}`
+      as: `/category/${categoryObj.id}`
     }
   })
 )
