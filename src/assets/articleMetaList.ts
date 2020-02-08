@@ -6,16 +6,14 @@
 import data from "./article-meta-list.json";
 
 export type ArticleMeta = {
-    id: string,
-    title: string,
-    description: string,
-    thumbnail: string,
-    category: string[],
-    postDate: number,
+    readonly id: string,
+    readonly title: string,
+    readonly description: string,
+    readonly thumbnail: string,
+    readonly category: string[],
+    readonly postDate: number,
 };
 
-export type ArticleMetaList = ArticleMeta[];
-
-const articleMetaList: ArticleMetaList = data;
+const articleMetaList: ArticleMeta[] = data;
 
 export default articleMetaList;

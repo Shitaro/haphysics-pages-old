@@ -18,31 +18,31 @@ const getArticleList = (categoryId: string) => (
     articleMetaList.filter(article => article.category.includes(categoryId))
 )
 
-const getStringFromRouter = (router: NextRouter): string => {
-    let id: string = "";
-    if (typeof router.query.category == "string") {
-        id = router.query.category;
-    } else {
-        id = "";
+const getSlugFromRouter = (router: NextRouter): string => {
+    const value = router.query.category;
+    if (value === undefined) {
+        return "";
+    } else if (Array.isArray(value)) {
+        throw new TypeError("The query has more than two url slugs!");
     }
-    return id;
+    return value;
 }
 
 const getCategoryButtonList = (article: ArticleMeta) :ButtonLinkProps[] => (
   article.category.map(category => {
-    const categoryObj = findCategoryById(category)!;
+    const matchCategory = findCategoryById(category)!;
 
     return {
-      name: categoryObj.ja,
+      name: matchCategory.ja,
       href: "/category/[category]",
-      as: `/category/${categoryObj.id}`
+      as: `/category/${matchCategory.id}`
     }
   })
 )
 
 const Page: NextPage = () => {
     const router = useRouter();
-    const categoryId = getStringFromRouter(router);
+    const categoryId = getSlugFromRouter(router);
 
     return (
         <Container maxWidth="md">

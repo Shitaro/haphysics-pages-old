@@ -12,7 +12,6 @@ import CardMedia from "@material-ui/core/CardMedia";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles, createStyles } from "@material-ui/core";
 import ButtonLink from "./atoms/ButtonLink";
-import categoryList from "../assets/category-list.json";
 import CardActionAreaLink from "./atoms/CardActionAreaLink";
 
 const useStyles = makeStyles(
