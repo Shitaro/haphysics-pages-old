@@ -3,8 +3,10 @@
 // This software is released under the MIT License.
 // https://opensource.org/licenses/MIT
 
-import { createMuiTheme, createPalette } from "@material-ui/core/styles";
-
+import { createMuiTheme } from "@material-ui/core/styles";
+// Localization
+// https://material-ui.com/guides/localization/
+import { jaJP } from "@material-ui/core/locale";
 
 const theme = createMuiTheme({
     palette: {
@@ -17,6 +19,6 @@ const theme = createMuiTheme({
             textTransform: "none"
         }
     }
-});
+}, jaJP);
 
 export default theme;
