@@ -33,7 +33,7 @@ const ArticleHeader: React.FC<ArticleHeaderProps> = props => {
     const classes = useStyles();
     return (
         <div className={classes.root}>
-            <Typography component="h1" variant="h2" gutterBottom>
+            <Typography component="h1" variant="h1" gutterBottom>
                 {props.title}
             </Typography>
             <Typography component="div" variant="subtitle1" color="textSecondary">

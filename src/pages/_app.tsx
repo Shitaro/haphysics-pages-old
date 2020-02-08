@@ -10,7 +10,9 @@ import Head from "next/head";
 // ## ThemeProvider
 // "be used at the root of your component tree"
 // https://material-ui.com/styles/api/#themeprovider
-import { ThemeProvider } from "@material-ui/core/styles";
+// ## Responsive font size
+// https://material-ui.com/customization/typography/#responsive-font-sizes
+import { responsiveFontSizes, ThemeProvider } from "@material-ui/core/styles";
 // ## CssBaseline
 // "kickstart an elegant, consistent, and simple baseline to build upon"
 // https://material-ui.com/components/css-baseline/
@@ -48,7 +50,7 @@ export default class extends App {
                     content="minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no"
                 />
                 </Head>
-                <ThemeProvider theme={theme}>
+                <ThemeProvider theme={responsiveFontSizes(theme)}>
                     <MDXProvider components={components}>
                         <CssBaseline />
                         <HeaderNavigation />

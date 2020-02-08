@@ -29,7 +29,7 @@ const getCategoryButtonList = (article: ArticleMeta) :ButtonLinkProps[] => (
 
 const useStyles = makeStyles(theme => ({
   heroContent: {
-    padding: theme.spacing(12,0,8)
+    padding: theme.spacing(8,0,8)
   },
   heroButtons: {
     marginTop: theme.spacing(4)
