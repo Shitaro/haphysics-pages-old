@@ -4,6 +4,7 @@
 // https://opensource.org/licenses/MIT
 
 import React from "react";
+import Meta from "next/head";
 import Typography from "@material-ui/core/Typography";
 import Divider from "@material-ui/core/Divider";
 import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
@@ -25,6 +26,7 @@ const useStyles = makeStyles((theme: Theme) =>
 type ArticleHeaderProps = {
     title: string,
     postDate: string,
+    description: string,
     lastUpdateDate?: string,
     category: string[],
 }
@@ -32,22 +34,27 @@ type ArticleHeaderProps = {
 const ArticleHeader: React.FC<ArticleHeaderProps> = props => {
     const classes = useStyles();
     return (
-        <div className={classes.root}>
-            <Typography component="h1" variant="h1" gutterBottom>
-                {props.title}
-            </Typography>
-            <Typography component="div" variant="subtitle1" color="textSecondary">
-                投稿日時: {getDate(props.postDate)}
-            </Typography>
-            <LastUpdateDate lastUpdateDate={props.lastUpdateDate} />
-            <Typography component="h2" variant="h4">
-                Category
-            </Typography>
-            {props.category.map(categoryId => {
-                return <CategoryButton categoryId={categoryId} />
-            })}
-            <Divider />
-        </div>
+        <>
+            <Meta>
+                <title key="title">{props.title} - Haphysics</title>
+            </Meta>
+            <div className={classes.root}>
+                <Typography component="h1" variant="h1" gutterBottom>
+                    {props.title}
+                </Typography>
+                <Typography component="div" variant="subtitle1" color="textSecondary">
+                    投稿日時: {getDate(props.postDate)}
+                </Typography>
+                <LastUpdateDate lastUpdateDate={props.lastUpdateDate} />
+                <Typography component="h2" variant="h4">
+                    Category
+                </Typography>
+                {props.category.map(categoryId => {
+                    return <CategoryButton categoryId={categoryId} />
+                })}
+                <Divider />
+            </div>
+        </>
     )
 }
 

@@ -15,7 +15,7 @@ export default () => (
             <meta name="theme-color" content={theme.palette.primary.main} />
             <link
                 rel="stylesheet"
-                href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+                href="https://fonts.googleapis.com/css?family=Noto+Sans+JP:300,400,500,700|Roboto:300,400,500,700&display=swap"
             />
             {/* KaTeX */}
             <link

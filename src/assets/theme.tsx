@@ -15,6 +15,13 @@ const theme = createMuiTheme({
         }
     },
     typography: {
+        fontFamily: [
+            "Roboto",
+            "Noto Sans JP",
+            "Helvetica",
+            "Arial",
+            "sans-serif"
+        ].join(","),
         button: {
             textTransform: "none"
         }
