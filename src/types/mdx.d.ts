@@ -4,7 +4,7 @@
 // https://opensource.org/licenses/MIT
 
 type ArticleMeta = {
-  name: string,
+  id: string,
   title: string,
   description: string,
   thumbnail: string,

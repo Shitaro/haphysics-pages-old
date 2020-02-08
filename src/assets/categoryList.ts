@@ -15,4 +15,6 @@ type CategoryList = Category[];
 
 const categoryList: CategoryList = data;
 
+export const findCategoryById = (categoryId: string) => categoryList.find(({id}) => id === categoryId);
+
 export default categoryList;
