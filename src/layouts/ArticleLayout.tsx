@@ -25,7 +25,7 @@ const ArticleLayout: React.FC = (props:any) => {
     return (
         <Container maxWidth="md">
             <ArticleHeader {...meta} />
-            <TableOfContents sections={getSectionNode(children)} />
+            <TableOfContents contents={getSectionNode(children)} />
             <main {...props} />
         </Container>
     )
