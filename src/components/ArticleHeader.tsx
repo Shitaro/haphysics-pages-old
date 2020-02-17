@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-type ArticleHeaderProps = {
+export type ArticleHeaderProps = {
     title: string,
     postDate: string,
     description: string,
