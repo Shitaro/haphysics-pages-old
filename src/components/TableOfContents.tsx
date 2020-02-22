@@ -3,11 +3,17 @@
 // This software is released under the MIT License.
 // https://opensource.org/licenses/MIT
 
+import React from "react";
 import { makeStyles, Theme, createStyles } from "@material-ui/core/styles";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem"
 import ListItemText from "@material-ui/core/ListItemText";
 import Typography from "@material-ui/core/Typography";
+
+type HeadingList = {
+    type: string;
+    title: string;
+}[];
 
 type HeadingMetaNode = {
     type: string;
@@ -30,10 +36,15 @@ const useStyles = makeStyles((theme: Theme) =>
     })
 );
 
-const target = ["h2", "h3", "h4"];
+function getHeadingList(mdxElemArray: JSX.Element[]): HeadingList {
+    const target = ["h2", "h3", "h4"];
+    return mdxElemArray.filter(item => target.includes(item.props.mdxType)).map(item => ({
+        type: item.props.mdxType,
+        title: item.props.children,
+    }));
+}
 
-export function createHeadingMetaList(mdxElemArray: JSX.Element[]): HeadingMetaNode[] {
-    const headingList = mdxElemArray.filter(element => target.includes(element.props.mdxType));
+export function createHeadingMetaList(headingList: HeadingList): HeadingMetaNode[] {
     let roots: number[] = [0];
     let parents: number[] = [0]; // parent of index
     let children: number[][] = new Array(headingList.length).fill([]).map(() => []); // initialize 2-D array with []
@@ -45,8 +56,8 @@ export function createHeadingMetaList(mdxElemArray: JSX.Element[]): HeadingMetaN
             return;
         }
 
-        const firstElemDepth = headingList[firstElemIndex].props.mdxType;
-        const secondElemDepth = headingList[secondElemIndex].props.mdxType;
+        const firstElemDepth = headingList[firstElemIndex].type;
+        const secondElemDepth = headingList[secondElemIndex].type;
 
         if (firstElemDepth === "h2" && secondElemDepth === "h2") {
             roots.push(secondElemIndex);
@@ -72,15 +83,15 @@ export function createHeadingMetaList(mdxElemArray: JSX.Element[]): HeadingMetaN
         // base case
         if (typeof children[index] === undefined) {
             return {
-                type: headingList[index].props.mdxType,
-                title: headingList[index].props.children,
+                type: headingList[index].type,
+                title: headingList[index].title,
                 children: []
             }
         }
 
         return {
-            type: headingList[index].props.mdxType,
-            title: headingList[index].props.children,
+            type: headingList[index].type,
+            title: headingList[index].title,
             children: [...children[index].map(createHeadingNode)]
         }
     }
@@ -112,15 +123,19 @@ const ContentsList: React.FC<ContentsListProps> = ({contents}) => (
     </List>
 )
 
-const TableOfContents: React.FC<ContentsListProps> = props => {
-    const { contents } = props;
+type Props = {
+    contents: JSX.Element[];
+}
+
+const TableOfContents: React.FC<Props> = props => {
+    const headingList = getHeadingList(props.contents);
 
     return (
         <nav>
             <Typography component="h2" variant="h2">
                 目次
             </Typography>
-            <ContentsList contents={contents} />
+            <ContentsList contents={createHeadingMetaList(headingList)} />
         </nav>
     )
 }
