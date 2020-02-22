@@ -1,14 +1,23 @@
+// Copyright (c) 2020 shitaro2016
+// 
+// This software is released under the MIT License.
+// https://opensource.org/licenses/MIT
+
 import { makeStyles, Theme, createStyles } from "@material-ui/core/styles";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem"
 import ListItemText from "@material-ui/core/ListItemText";
+import Typography from "@material-ui/core/Typography";
 
-export type SectionNode = {
+type HeadingMetaNode = {
     type: string;
-    text: string;
+    title: string;
+    children?: HeadingMetaNode[];
 }
 
-type Props = { contents: SectionNode[] };
+type ContentsListProps = {
+    contents: HeadingMetaNode[];
+}
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -21,58 +30,81 @@ const useStyles = makeStyles((theme: Theme) =>
     })
 );
 
-const testTree = [
-    {
-        type: "h2",
-        text: "Section",
-        children: [
-            {
-                type: "h3",
-                text: "Subsection",
-                children: [
-                    {
-                        type: "h4",
-                        text: "副々セクション",
-                        children: []
-                    }
-                ]
-            }
-        ]
-    },
-    {
-        type: "h2",
-        text: "Reference",
-        children: []
+const target = ["h2", "h3", "h4"];
+
+export function createHeadingMetaList(mdxElemArray: JSX.Element[]): HeadingMetaNode[] {
+    const headingList = mdxElemArray.filter(element => target.includes(element.props.mdxType));
+    let roots: number[] = [0];
+    let parents: number[] = [0]; // parent of index
+    let children: number[][] = new Array(headingList.length).fill([]).map(() => []); // initialize 2-D array with []
+
+    function getChildrenIndex(index: number, firstElemIndex: number) {
+        const secondElemIndex = index + 1;
+        // base case
+        if (secondElemIndex === headingList.length) {
+            return;
+        }
+
+        const firstElemDepth = headingList[firstElemIndex].props.mdxType;
+        const secondElemDepth = headingList[secondElemIndex].props.mdxType;
+
+        if (firstElemDepth === "h2" && secondElemDepth === "h2") {
+            roots.push(secondElemIndex);
+            parents[secondElemIndex] = secondElemIndex;
+            getChildrenIndex(secondElemIndex, secondElemIndex);
+        } else if (firstElemDepth > secondElemDepth) {
+            getChildrenIndex(index, parents[firstElemIndex]);
+        } else if (firstElemDepth < secondElemDepth) {
+            parents[secondElemIndex] = firstElemIndex;
+            children[firstElemIndex].push(secondElemIndex);
+            getChildrenIndex(secondElemIndex, secondElemIndex);
+        } else {
+            parents[secondElemIndex] = parents[firstElemIndex];
+            children[parents[secondElemIndex]].push(secondElemIndex);
+            getChildrenIndex(secondElemIndex, secondElemIndex);
+        }
+        return;
     }
-];
 
-type HogeNode = {
-    type: string;
-    text: string;
-    children?: HogeNode[];
+    getChildrenIndex(0, 0);
+
+    function createHeadingNode(index: number): HeadingMetaNode {
+        // base case
+        if (typeof children[index] === undefined) {
+            return {
+                type: headingList[index].props.mdxType,
+                title: headingList[index].props.children,
+                children: []
+            }
+        }
+
+        return {
+            type: headingList[index].props.mdxType,
+            title: headingList[index].props.children,
+            children: [...children[index].map(createHeadingNode)]
+        }
+    }
+
+    return roots.map(createHeadingNode);
 }
 
-type ContentsListProps = {
-    items: HogeNode[];
-}
-
-const ContentsList: React.FC<ContentsListProps> = ({items}) => (
+const ContentsList: React.FC<ContentsListProps> = ({contents}) => (
     <List component="div" disablePadding>
-        {items.map(item => {
+        {contents.map(content => {
             const classes = useStyles();
             let padding = "";
-            if (item.type === "h3") {
+            if (content.type === "h3") {
                 padding = classes.subsection;
-            } else if (item.type === "h4") {
+            } else if (content.type === "h4") {
                 padding = classes.subsubsection;
             }
             return (
                 <>
                     <ListItem button className={padding}>
-                        <ListItemText primary={item.text} />
+                        <ListItemText primary={content.title} />
                     </ListItem>
-                    {item.children !== undefined ? (
-                        <ContentsList items={item.children} />
+                    {content.children !== undefined ? (
+                        <ContentsList contents={content.children} />
                     ) : null}
                 </>
             )
@@ -80,38 +112,16 @@ const ContentsList: React.FC<ContentsListProps> = ({items}) => (
     </List>
 )
 
-const TableOfContents: React.FC<Props> = props => {
-    const classes = useStyles();
+const TableOfContents: React.FC<ContentsListProps> = props => {
     const { contents } = props;
-    console.log(testTree)
-    console.log(<ContentsList items={testTree} />)
 
     return (
-        <>
-        <p>TEST</p>
-            <nav>
-                <ContentsList items={testTree} />
-            </nav>
-        <p>END TEST</p>
-        <List component="nav">
-            <ListItem button>
-                <ListItemText primary="セクション" />
-            </ListItem>
-            <List component="div" disablePadding>
-                <ListItem button  className={classes.subsection}>
-                    <ListItemText primary="サブセクション" />
-                </ListItem>
-                <List component="div" disablePadding>
-                    <ListItem button className={classes.subsubsection}>
-                        <ListItemText primary="副々セクション" />
-                    </ListItem>
-                </List>
-            </List>
-            <ListItem button>
-                <ListItemText primary="参考文献" />
-            </ListItem>
-        </List>
-        </>
+        <nav>
+            <Typography component="h2" variant="h2">
+                目次
+            </Typography>
+            <ContentsList contents={contents} />
+        </nav>
     )
 }
 

@@ -1,22 +1,12 @@
+// Copyright (c) 2020 shitaro2016
+// 
+// This software is released under the MIT License.
+// https://opensource.org/licenses/MIT
+
 import React from "react";
 import ArticleHeader, { ArticleHeaderProps } from "../components/ArticleHeader";
-import TableOfContents, { SectionNode } from "../components/TableOfContents";
+import TableOfContents, { createHeadingMetaList } from "../components/TableOfContents";
 import Container from "@material-ui/core/Container";
-
-const getSectionNode = (children: JSX.Element[]): SectionNode[] => {
-    const target = ["h2", "h3", "h4"];
-    const sections = children.filter(child => target.includes(child.props.mdxType));
-
-    return (
-        sections.map(section => {
-            const result: SectionNode = {
-                type: section.props.mdxType,
-                text: section.props.children,
-            };
-            return result;
-        })
-    )
-}
 
 const ArticleLayout: React.FC = (props:any) => {
     const meta: ArticleHeaderProps = props.meta;
@@ -25,7 +15,7 @@ const ArticleLayout: React.FC = (props:any) => {
     return (
         <Container maxWidth="md">
             <ArticleHeader {...meta} />
-            <TableOfContents contents={getSectionNode(children)} />
+            <TableOfContents contents={createHeadingMetaList(children)} />
             <main {...props} />
         </Container>
     )
