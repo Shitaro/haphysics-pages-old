@@ -12,17 +12,39 @@ import TableCell from "@material-ui/core/TableCell";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import ArticleLayout from "../layouts/ArticleLayout";
+import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
+
+const useStyles = makeStyles((theme: Theme) =>
+    createStyles({
+        heading: {
+            // To fix page header overlaps in-page anchors
+            // Reference of value of margin/padding:
+            // https://material-ui.com/customization/default-theme/
+            paddingTop: theme.spacing(7),
+            marginTop: -theme.spacing(7),
+            [`${theme.breakpoints.up("xs")} and (orientation: landscape)`]: {
+                paddingTop: theme.spacing(6),
+                marginTop: -theme.spacing(6),
+            },
+            [theme.breakpoints.up("sm")]: {
+                paddingTop: theme.spacing(8),
+                marginTop: -theme.spacing(8),
+            },
+        },
+    })
+);
 
 // Map Mui components to MDX
 // https://mdxjs.com/getting-started#mdxprovider
 // https://mdxjs.com/guides/wrapper-customization
+
 const components = {
     wrapper: (props: any) => <ArticleLayout {...props} />,
     p:  (props: any) => <Typography {...props} component="p"  variant="body1" paragraph />,
     h1: (props: any) => <Typography {...props} component="h1" variant="h1" gutterBottom />,
-    h2: (props: any) => <Typography {...props} component="h2" variant="h2" gutterBottom />,
-    h3: (props: any) => <Typography {...props} component="h3" variant="h4" gutterBottom />,
-    h4: (props: any) => <Typography {...props} component="h4" variant="h5" gutterBottom />,
+    h2: (props: any) => <Typography {...props} component="h2" variant="h2" id={props.children} className={useStyles().heading} gutterBottom />,
+    h3: (props: any) => <Typography {...props} component="h3" variant="h4" id={props.children} className={useStyles().heading} gutterBottom />,
+    h4: (props: any) => <Typography {...props} component="h4" variant="h5" id={props.children} className={useStyles().heading} gutterBottom />,
     h5: (props: any) => <Typography {...props} component="h5" variant="h6" gutterBottom />,
     h6: (props: any) => <Typography {...props} component="h6" variant="h6" gutterBottom />,
     ul: (props: any) => <Typography {...props} component="ul" />,

@@ -111,7 +111,7 @@ const ContentsList: React.FC<ContentsListProps> = ({contents}) => (
             }
             return (
                 <>
-                    <ListItem button className={padding}>
+                    <ListItem button className={padding} component="a" href={`#${content.title}`}>
                         <ListItemText primary={content.title} />
                     </ListItem>
                     {content.children !== undefined ? (
