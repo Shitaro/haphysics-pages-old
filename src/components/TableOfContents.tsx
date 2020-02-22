@@ -5,10 +5,8 @@
 
 import React from "react";
 import { makeStyles, Theme, createStyles } from "@material-ui/core/styles";
-import List from "@material-ui/core/List";
-import ListItem from "@material-ui/core/ListItem"
-import ListItemText from "@material-ui/core/ListItemText";
 import Typography from "@material-ui/core/Typography";
+import MuiLink from "@material-ui/core/Link";
 
 type HeadingList = {
     type: string;
@@ -27,6 +25,21 @@ type ContentsListProps = {
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
+        root: {
+            [theme.breakpoints.up("lg")]: {
+                marginTop: theme.spacing(2),
+                position: "fixed",
+            },
+            paddingBottom: theme.spacing(2),
+        },
+        title: {
+            ...theme.typography.h2,
+            [theme.breakpoints.up("lg")]: {
+                ...theme.typography.h4,
+            },
+        },
+        section: {
+        },
         subsection: {
             paddingLeft: theme.spacing(4),
         },
@@ -100,10 +113,10 @@ export function createHeadingMetaList(headingList: HeadingList): HeadingMetaNode
 }
 
 const ContentsList: React.FC<ContentsListProps> = ({contents}) => (
-    <List component="div" disablePadding>
+    <>
         {contents.map(content => {
             const classes = useStyles();
-            let padding = "";
+            let padding = classes.section;
             if (content.type === "h3") {
                 padding = classes.subsection;
             } else if (content.type === "h4") {
@@ -111,16 +124,18 @@ const ContentsList: React.FC<ContentsListProps> = ({contents}) => (
             }
             return (
                 <>
-                    <ListItem button className={padding} component="a" href={`#${content.title}`}>
-                        <ListItemText primary={content.title} />
-                    </ListItem>
+                    <MuiLink display="block" component="a" href={`#${content.title}`} key={content.title} color="textPrimary">
+                        <Typography variant="body1" className={padding} color="textSecondary" gutterBottom>
+                            {content.title}
+                        </Typography>
+                    </MuiLink>
                     {content.children !== undefined ? (
                         <ContentsList contents={content.children} />
                     ) : null}
                 </>
             )
         })}
-    </List>
+    </>
 )
 
 type Props = {
@@ -129,10 +144,11 @@ type Props = {
 
 const TableOfContents: React.FC<Props> = props => {
     const headingList = getHeadingList(props.contents);
+    const classes = useStyles();
 
     return (
-        <nav>
-            <Typography component="h2" variant="h2">
+        <nav className={classes.root}>
+            <Typography component="h2" className={classes.title} gutterBottom>
                 目次
             </Typography>
             <ContentsList contents={createHeadingMetaList(headingList)} />
