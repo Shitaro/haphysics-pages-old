@@ -8,14 +8,14 @@ import { Html, Head, Main, NextScript } from "next/document";
 import theme from '../assets/theme';
 
 export default () => (
-    <Html>
+    <Html lang="ja">
         <Head>
             <meta charSet="utf-8" />
             {/* PWA primary color */}
             <meta name="theme-color" content={theme.palette.primary.main} />
             <link
                 rel="stylesheet"
-                href="https://fonts.googleapis.com/css?family=Noto+Sans+JP:300,400,500,700|Roboto:300,400,500,700&display=swap"
+                href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
             />
             {/* KaTeX */}
             <link
