@@ -6,12 +6,13 @@
 import data from "./category-list.json";
 
 type Category = {
-    id: string,
-    name: string,
+    readonly id: string,
+    readonly ja: string,
+    readonly en: string,
 };
 
-type CategoryList = Category[];
+const categoryList: Category[] = data;
 
-const categoryList: CategoryList = data;
+export const findCategoryById = (categoryId: string) => categoryList.find(({id}) => id === categoryId);
 
 export default categoryList;

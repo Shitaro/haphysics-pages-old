@@ -5,12 +5,8 @@
 
 // Write database
 const articleMetaList = require("./generate-article-meta-list");
-const categoryList = require("./make-category-list")(articleMetaList);
+const categoryList = require("../assets/category-list.json")
 const writeDatabase = require("./write-database");
-writeDatabase({
-    objectList: categoryList,
-    jsonName: "category-list"
-});
 writeDatabase({
     objectList: articleMetaList,
     jsonName: "article-meta-list"

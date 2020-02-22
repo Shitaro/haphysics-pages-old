@@ -21,7 +21,7 @@ const CategoryPage: NextPage = () => {
             <List>
                 {categoryList.map(category => (
                     <ListItemLink href="/category/[category]" as={`/category/${category.id}`}>
-                        <ListItemText primary={category.name} />
+                        <ListItemText primary={category.ja} />
                     </ListItemLink>
                 ))}
             </List>

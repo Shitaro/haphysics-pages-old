@@ -12,25 +12,24 @@ import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid"
 import MediaCard, { ButtonLinkProps } from "../components/MediaCard";
 import articleMetaList, { ArticleMeta } from "../assets/articleMetaList";
-import categoryList from "../assets/categoryList";
+import { findCategoryById } from "../assets/categoryList";
 import ButtonLink from "../components/atoms/ButtonLink";
 
-const getCategoryButtonList = (article: ArticleMeta) => {
-    const categoryButtonList: ButtonLinkProps[] = article.category.map(category => {
-      const categoryId = categoryList.find(c => c.name === category)!.id;
+const getCategoryButtonList = (article: ArticleMeta) :ButtonLinkProps[] => (
+  article.category.map(category => {
+    const categoryObj = findCategoryById(category)!;
 
-      return {
-        name: category,
-        href: "/category/[category]",
-        as: `/category/${categoryId}`
-      }
-    })
-    return categoryButtonList;
-}
+    return {
+      name: categoryObj.ja,
+      href: "/category/[category]",
+      as: `/category/${categoryObj.id}`
+    }
+  })
+)
 
 const useStyles = makeStyles(theme => ({
   heroContent: {
-    padding: theme.spacing(12,0,8)
+    padding: theme.spacing(8,0,8)
   },
   heroButtons: {
     marginTop: theme.spacing(4)
