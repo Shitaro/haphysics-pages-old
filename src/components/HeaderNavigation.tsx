@@ -91,6 +91,9 @@ function HeaderNavigation() {
             <ButtonLink href="/category" size="large">
               Category
             </ButtonLink>
+            <ButtonLink href="/tag" size="large">
+              Tag
+            </ButtonLink>
           </Hidden>
           <SearchBar />
         </ToolBar>

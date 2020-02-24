@@ -13,6 +13,7 @@ const articleMetaList = fs.readdirSync("./src/pages/articles").map(article => {
         description,
         thumbnail,
         category,
+        tag,
         postDate,
         lastUpdateDate,
     } = getArticleMeta(article);
@@ -22,6 +23,7 @@ const articleMetaList = fs.readdirSync("./src/pages/articles").map(article => {
         description,
         thumbnail,
         category,
+        tag,
         postDate: new Date(postDate).getTime(),
         lastUpdateDate: new Date(lastUpdateDate).getTime()
     }
