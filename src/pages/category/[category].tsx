@@ -50,7 +50,9 @@ const Page: NextPage = () => {
                 Category: {getCategoryName(categoryId)}
             </Typography>
             <Grid container spacing={4}>
-                {getArticleList(categoryId).map(article => {
+                {getArticleList(categoryId)
+                    .sort((a,b) => a.postDate < b.postDate ? 1 : -1 )
+                    .map(article => {
                 const categoryButtonList = getCategoryButtonList(article);
                 return (
                     <Grid item xs={12} sm={6}>

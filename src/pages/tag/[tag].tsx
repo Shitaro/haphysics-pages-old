@@ -50,7 +50,9 @@ const Page: NextPage = () => {
                 Tag: {getTagName(tagId)}
             </Typography>
             <Grid container spacing={4}>
-                {getArticleList(tagId).map(article => {
+                {getArticleList(tagId)
+                    .sort((a,b) => a.postDate < b.postDate ? 1 : -1 )
+                    .map(article => {
                 const tagButtonList = getTagButtonList(article);
                 return (
                     <Grid item xs={12} sm={6}>
