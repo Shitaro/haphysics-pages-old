@@ -7,10 +7,10 @@ import React from "react";
 import { NextPage } from "next";
 import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
-import categoryList from "../assets/categoryList";
+import categoryList from "../../assets/categoryList";
 import List from "@material-ui/core/List";
 import ListItemText from "@material-ui/core/ListItemText";
-import ListItemLink from "../components/atoms/ListItemLink";
+import ListItemLink from "../../components/atoms/ListItemLink";
 
 const CategoryPage: NextPage = () => {
     return (
