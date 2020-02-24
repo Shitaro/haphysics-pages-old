@@ -5,6 +5,9 @@
 
 import React from "react";
 import { makeStyles, Theme, createStyles } from "@material-ui/core/styles";
+import List from "@material-ui/core/List";
+import ListItem from "@material-ui/core/ListItem"
+import ListItemText from "@material-ui/core/ListItemText";
 import Typography from "@material-ui/core/Typography";
 import MuiLink from "@material-ui/core/Link";
 
@@ -113,7 +116,7 @@ export function createHeadingMetaList(headingList: HeadingList): HeadingMetaNode
 }
 
 const ContentsList: React.FC<ContentsListProps> = ({contents}) => (
-    <>
+    <List component="div" disablePadding dense>
         {contents.map(content => {
             const classes = useStyles();
             let padding = classes.section;
@@ -124,18 +127,16 @@ const ContentsList: React.FC<ContentsListProps> = ({contents}) => (
             }
             return (
                 <>
-                    <MuiLink display="block" component="a" href={`#${content.title}`} key={content.title} color="textPrimary">
-                        <Typography variant="body1" className={padding} color="textSecondary" gutterBottom>
-                            {content.title}
-                        </Typography>
-                    </MuiLink>
+                    <ListItem button className={padding} component="a" href={`#${content.title}`}>
+                        <ListItemText primary={content.title} />
+                    </ListItem>
                     {content.children !== undefined ? (
                         <ContentsList contents={content.children} />
                     ) : null}
                 </>
             )
         })}
-    </>
+    </List>
 )
 
 type Props = {
