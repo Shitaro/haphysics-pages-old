@@ -8,6 +8,7 @@ import { makeStyles, createStyles, Theme, createMuiTheme } from '@material-ui/co
 import BottomNavigation from '@material-ui/core/BottomNavigation';
 import HomeIcon from "@material-ui/icons/Home";
 import CategoryIcon from "@material-ui/icons/Folder";
+import TagIcon from "@material-ui/icons/Label";
 import Hidden from "@material-ui/core/Hidden";
 import BottomNavigationActionLink from "./atoms/BottomNavigationActionLink";
 
@@ -53,6 +54,15 @@ export default function SimpleBottomNavigation() {
                     href="/category"
                     label="CATEGORY"
                     icon={<CategoryIcon />}
+                    showLabel
+                    classes={{
+                        root: classes.iconRoot
+                    }}
+                />
+                <BottomNavigationActionLink
+                    href="/tag"
+                    label="TAG"
+                    icon={<TagIcon />}
                     showLabel
                     classes={{
                         root: classes.iconRoot

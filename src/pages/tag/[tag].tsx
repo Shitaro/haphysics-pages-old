@@ -8,18 +8,18 @@ import { NextPage } from "next";
 import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
-import categoryList, { findCategoryById } from "../../assets/categoryList";
+import tagList, { findTagById } from "../../assets/tagList";
 import articleMetaList, { ArticleMeta } from "../../assets/articleMetaList";
 import MediaCard, { ButtonLinkProps } from "../../components/MediaCard";
 
-const getCategoryName = (categoryId: string) => categoryList.find(category => category.id === categoryId)?.ja || "";
+const getTagName = (tagId: string) => tagList.find(tag => tag.id === tagId)?.ja || "";
 
-const getArticleList = (categoryId: string) => (
-    articleMetaList.filter(article => article.category.includes(categoryId))
+const getArticleList = (tagId: string) => (
+    articleMetaList.filter(article => article.tag.includes(tagId))
 )
 
 const getSlugFromRouter = (router: NextRouter): string => {
-    const value = router.query.category;
+    const value = router.query.tag;
     if (value === undefined) {
         return "";
     } else if (Array.isArray(value)) {
@@ -28,32 +28,32 @@ const getSlugFromRouter = (router: NextRouter): string => {
     return value;
 }
 
-const getCategoryButtonList = (article: ArticleMeta) :ButtonLinkProps[] => (
-  article.category.map(category => {
-    const matchCategory = findCategoryById(category)!;
+const getTagButtonList = (article: ArticleMeta) :ButtonLinkProps[] => (
+  article.tag.map(tag => {
+    const matchTag = findTagById(tag)!;
 
     return {
-      name: matchCategory.ja,
-      href: "/category/[category]",
-      as: `/category/${matchCategory.id}`
+      name: matchTag.ja,
+      href: "/tag/[tag]",
+      as: `/tag/${matchTag.id}`
     }
   })
 )
 
 const Page: NextPage = () => {
     const router = useRouter();
-    const categoryId = getSlugFromRouter(router);
+    const tagId = getSlugFromRouter(router);
 
     return (
         <Container maxWidth="md">
             <Typography component="h1" variant="h2" gutterBottom>
-                Category: {getCategoryName(categoryId)}
+                Tag: {getTagName(tagId)}
             </Typography>
             <Grid container spacing={4}>
-                {getArticleList(categoryId)
+                {getArticleList(tagId)
                     .sort((a,b) => a.postDate < b.postDate ? 1 : -1 )
                     .map(article => {
-                const categoryButtonList = getCategoryButtonList(article);
+                const tagButtonList = getTagButtonList(article);
                 return (
                     <Grid item xs={12} sm={6}>
                         <MediaCard
@@ -61,7 +61,7 @@ const Page: NextPage = () => {
                             href={`/articles/${article.id}`}
                             image={article.thumbnail}
                             description={article.description}
-                            buttons={categoryButtonList}
+                            buttons={tagButtonList}
                         />
                     </Grid>
                 )

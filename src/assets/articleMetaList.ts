@@ -11,6 +11,7 @@ export type ArticleMeta = {
     readonly description: string,
     readonly thumbnail: string,
     readonly category: string[],
+    readonly tag: string[],
     readonly postDate: number,
 };
 
