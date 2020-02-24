@@ -10,6 +10,7 @@ import Divider from "@material-ui/core/Divider";
 import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
 import ButtonLink from "./atoms/ButtonLink";
 import { findCategoryById } from "../assets/categoryList";
+import { findTagById } from "../assets/tagList";
 
 const useStyles = makeStyles((theme: Theme) => 
   createStyles({
@@ -29,6 +30,7 @@ export type ArticleHeaderProps = {
     description: string,
     lastUpdateDate?: string,
     category: string[],
+    tag: string[],
 }
 
 const ArticleHeader: React.FC<ArticleHeaderProps> = props => {
@@ -52,6 +54,12 @@ const ArticleHeader: React.FC<ArticleHeaderProps> = props => {
                 {props.category.map(categoryId => {
                     return <CategoryButton categoryId={categoryId} />
                 })}
+                <Typography component="h2" variant="h4">
+                    Tag
+                </Typography>
+                {props.tag.map(tagId => {
+                    return <TagButton tagId={tagId} />
+                })}
                 <Divider />
             </div>
         </>
@@ -67,6 +75,22 @@ const CategoryButton: React.FC<{categoryId: string}> = ({categoryId}) => {
             as={`/category/${categoryId}`}
             variant="outlined"
             color="primary"
+            className={classes.button}
+        >
+            {name}
+        </ButtonLink>
+    )
+}
+
+const TagButton: React.FC<{tagId: string}> = ({tagId}) => {
+    const name = findTagById(tagId)!.ja;
+    const classes = useStyles();
+    return (
+        <ButtonLink
+            href="/tag/[tag]"
+            as={`/tag/${tagId}`}
+            variant="outlined"
+            color="inherit"
             className={classes.button}
         >
             {name}
