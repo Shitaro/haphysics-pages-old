@@ -3,6 +3,12 @@
 // This software is released under the MIT License.
 // https://opensource.org/licenses/MIT
 
+// References:
+// webpack
+// https://webpack.js.org/configuration/resolve/#resolvealias
+// typescript
+// https://www.typescriptlang.org/docs/handbook/module-resolution.html#path-mapping
+
 const path = require("path");
 
 module.exports = pluginOptions => (nextConfig = {}) => {
