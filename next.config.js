@@ -19,7 +19,20 @@ const withMDX = require("@next/mdx")({
     }
 });
 
-module.exports = withMDX({
-    pageExtensions: ["mdx", "tsx"],
-    exportPathMap
+const withAbsoluteImports = require("./src/lib/with-abusolute-imports")({
+    baseDir: __dirname,
+    aliases: [
+        {path: "src", alias: "@"},
+        {path: "src/assets", alias: "@assets"},
+        {path: "src/components", alias: "@components"},
+        {path: "src/layouts", alias: "@layouts"},
+    ],
 });
+
+module.exports = 
+    withAbsoluteImports(
+        withMDX({
+            pageExtensions: ["mdx", "tsx"],
+            exportPathMap
+        })
+    );

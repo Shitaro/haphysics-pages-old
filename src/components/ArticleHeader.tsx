@@ -8,9 +8,9 @@ import Meta from "next/head";
 import Typography from "@material-ui/core/Typography";
 import Divider from "@material-ui/core/Divider";
 import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
-import ButtonLink from "./atoms/ButtonLink";
-import { findCategoryById } from "../assets/categoryList";
-import { findTagById } from "../assets/tagList";
+import ButtonLink from "@components/atoms/ButtonLink";
+import { findCategoryById } from "@assets/categoryList";
+import { findTagById } from "@assets/tagList";
 
 const useStyles = makeStyles((theme: Theme) => 
   createStyles({

@@ -11,8 +11,8 @@ import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles, createStyles } from "@material-ui/core";
-import ButtonLink from "./atoms/ButtonLink";
-import CardActionAreaLink from "./atoms/CardActionAreaLink";
+import ButtonLink from "@components/atoms/ButtonLink";
+import CardActionAreaLink from "@components/atoms/CardActionAreaLink";
 
 const useStyles = makeStyles(
   createStyles({

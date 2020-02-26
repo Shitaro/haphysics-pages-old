@@ -7,7 +7,7 @@ import React from "react";
 import Document, { DocumentContext } from "next/document";
 import { ServerStyleSheet } from "styled-components";
 import { ServerStyleSheets } from "@material-ui/core/styles";
-import DefaultLayout from "../layouts/Layout";
+import DefaultLayout from "@layouts/Layout";
 
 export default class extends Document {
     static async getInitialProps(ctx: DocumentContext) {

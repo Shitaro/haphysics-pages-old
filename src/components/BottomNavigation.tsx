@@ -10,7 +10,7 @@ import HomeIcon from "@material-ui/icons/Home";
 import CategoryIcon from "@material-ui/icons/Folder";
 import TagIcon from "@material-ui/icons/Label";
 import Hidden from "@material-ui/core/Hidden";
-import BottomNavigationActionLink from "./atoms/BottomNavigationActionLink";
+import BottomNavigationActionLink from "@components/atoms/BottomNavigationActionLink";
 
 const bottomNavHeight = createMuiTheme().spacing(7);
 

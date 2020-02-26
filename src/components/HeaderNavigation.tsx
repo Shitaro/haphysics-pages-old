@@ -10,7 +10,7 @@ import ToolBar from "@material-ui/core/Toolbar";
 import InputBase from "@material-ui/core/InputBase";
 import SearchIcon from "@material-ui/icons/Search";
 import Hidden from "@material-ui/core/Hidden";
-import ButtonLink from "./atoms/ButtonLink";
+import ButtonLink from "@components/atoms/ButtonLink";
 
 const useStyles = makeStyles((theme: Theme) => 
   createStyles({

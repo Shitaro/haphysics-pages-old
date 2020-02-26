@@ -19,12 +19,12 @@ import { responsiveFontSizes, ThemeProvider } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
 
 import { MDXProvider } from "@mdx-js/react";
-import theme from "../assets/theme";
+import theme from "@assets/theme";
 
-import HeaderNavigation from "../components/HeaderNavigation";
-import BottomNavigation from "../components/BottomNavigation";
+import HeaderNavigation from "@components/HeaderNavigation";
+import BottomNavigation from "@components/BottomNavigation";
 
-import components from "../assets/MdxComponents";
+import components from "@assets/MdxComponents";
 
 export default class extends App {
     componentDidMount() {
