@@ -15,11 +15,14 @@ import { findTagById } from "@assets/tagList";
 const useStyles = makeStyles((theme: Theme) => 
   createStyles({
     root: {
-      flexGrow: 1,
-      marginBottom: theme.spacing(4)
+        flexGrow: 1,
+        marginBottom: theme.spacing(4)
     },
     button: {
         margin: theme.spacing(1),
+    },
+    heading: {
+        fontWeight: 500,
     },
   })
 );
@@ -48,13 +51,13 @@ const ArticleHeader: React.FC<ArticleHeaderProps> = props => {
                     投稿日時: {getDate(props.postDate)}
                 </Typography>
                 <LastUpdateDate lastUpdateDate={props.lastUpdateDate} />
-                <Typography component="h2" variant="h4">
+                <Typography component="h2" variant="h4" className={classes.heading}>
                     Category
                 </Typography>
                 {props.category.map(categoryId => {
                     return <CategoryButton categoryId={categoryId} />
                 })}
-                <Typography component="h2" variant="h4">
+                <Typography component="h2" variant="h4" className={classes.heading}>
                     Tag
                 </Typography>
                 {props.tag.map(tagId => {

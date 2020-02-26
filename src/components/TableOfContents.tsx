@@ -37,6 +37,7 @@ const useStyles = makeStyles((theme: Theme) =>
         },
         title: {
             ...theme.typography.h2,
+            fontWeight: 700,
             [theme.breakpoints.up("lg")]: {
                 ...theme.typography.h4,
             },

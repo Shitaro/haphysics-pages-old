@@ -17,6 +17,7 @@ import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         heading: {
+            fontWeight: 700,
             // To fix page header overlaps in-page anchors
             // Reference of value of margin/padding:
             // https://material-ui.com/customization/default-theme/
