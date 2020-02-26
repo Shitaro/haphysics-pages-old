@@ -20,7 +20,7 @@ const CategoryPage: NextPage = () => {
             </Typography>
             <List>
                 {categoryList.map(category => (
-                    <ListItemLink href="/category/[category]" as={`/category/${category.id}`}>
+                    <ListItemLink href="/category/[category]" as={`/category/${category.id}`} key={category.id}>
                         <ListItemText primary={category.ja} />
                     </ListItemLink>
                 ))}

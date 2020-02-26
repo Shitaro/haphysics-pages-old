@@ -89,8 +89,9 @@ const IndexPage: NextPage = () => {
           {articleMetaList.map(article => {
             const categoryButtonList = getCategoryButtonList(article);
             return (
-              <Grid item xs={12} sm={6}>
+              <Grid item xs={12} sm={6} key={article.id}>
                 <MediaCard
+                  key={article.id}
                   title={article.title}
                   href={`/articles/${article.id}`}
                   image={article.thumbnail}

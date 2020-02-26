@@ -60,6 +60,7 @@ const MediaCard: React.FC<MediaCardProps> = props => {
       <CardActions>
         {props.buttons.map(button => (
             <ButtonLink
+              key={button.name}
               href={button.href}
               as={button.as}
               color="primary"

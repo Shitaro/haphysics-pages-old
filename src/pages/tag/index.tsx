@@ -20,7 +20,7 @@ const TagPage: NextPage = () => {
             </Typography>
             <List>
                 {tagList.map(tag => (
-                    <ListItemLink href="/tag/[tag]" as={`/tag/${tag.id}`}>
+                    <ListItemLink href="/tag/[tag]" as={`/tag/${tag.id}`} key={tag.id}>
                         <ListItemText primary={tag.ja} />
                     </ListItemLink>
                 ))}
