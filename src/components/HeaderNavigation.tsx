@@ -84,7 +84,7 @@ function HeaderNavigation() {
     <div className={classes.root}>
       <AppBar position="fixed">
         <ToolBar>
-          <Hidden xsDown>
+          <Hidden xsDown implementation="css">
             <ButtonLink href="/" size="large">
               Home
             </ButtonLink>

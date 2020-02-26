@@ -36,7 +36,7 @@ export default function SimpleBottomNavigation() {
     const classes = useStyles();
 
     return (
-        <Hidden smUp>
+        <Hidden smUp implementation="css">
             <div className={classes.offset} />
             <BottomNavigation
                 className={classes.root}
