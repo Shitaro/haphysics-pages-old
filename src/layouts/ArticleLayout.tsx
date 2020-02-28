@@ -29,12 +29,12 @@ const ArticleLayout: React.FC = (props:any) => {
             <Grid container>
                 <Grid item xs={12} lg={8}>
                     <ArticleHeader {...meta} />
-                    <Hidden lgUp>
+                    <Hidden lgUp implementation="css">
                         <TableOfContents contents={contents} />
                     </Hidden>
                     <main {...props} />
                 </Grid>
-                <Hidden mdDown>
+                <Hidden mdDown implementation="css">
                     <Grid item xs={12} lg={4}>
                         <div className={classes.toc}>
                             <TableOfContents contents={contents} />

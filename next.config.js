@@ -9,7 +9,7 @@
 const remarkMath = require('remark-math');
 const rehypeKatex = require('rehype-katex');
 const rehypePrism = require("@mapbox/rehype-prism");
-const exportPathMap = require("./src/lib/export-path-map");
+const exportPathMap = require("./src/modules/export-path-map");
 
 const withMDX = require("@next/mdx")({
     extension: /\.mdx?$/,
@@ -19,7 +19,20 @@ const withMDX = require("@next/mdx")({
     }
 });
 
-module.exports = withMDX({
-    pageExtensions: ["mdx", "tsx"],
-    exportPathMap
+const withAbsoluteImports = require("./src/modules/with-abusolute-imports")({
+    baseDir: __dirname,
+    aliases: [
+        {path: "src", alias: "@"},
+        {path: "src/assets", alias: "@assets"},
+        {path: "src/components", alias: "@components"},
+        {path: "src/layouts", alias: "@layouts"},
+    ],
 });
+
+module.exports = 
+    withAbsoluteImports(
+        withMDX({
+            pageExtensions: ["mdx", "tsx"],
+            exportPathMap
+        })
+    );

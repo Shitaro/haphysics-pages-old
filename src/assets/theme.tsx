@@ -16,9 +16,10 @@ const theme = createMuiTheme({
     },
     typography: {
         button: {
-            textTransform: "none"
-        }
-    }
+            textTransform: "none",
+            fontWeight: 700,
+        },
+    },
 }, jaJP);
 
 export default theme;

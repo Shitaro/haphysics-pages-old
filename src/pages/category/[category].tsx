@@ -8,9 +8,9 @@ import { NextPage } from "next";
 import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
-import categoryList, { findCategoryById } from "../../assets/categoryList";
-import articleMetaList, { ArticleMeta } from "../../assets/articleMetaList";
-import MediaCard, { ButtonLinkProps } from "../../components/MediaCard";
+import categoryList, { findCategoryById } from "@assets/categoryList";
+import articleMetaList, { ArticleMeta } from "@assets/articleMetaList";
+import MediaCard, { ButtonLinkProps } from "@components/MediaCard";
 
 const getCategoryName = (categoryId: string) => categoryList.find(category => category.id === categoryId)?.ja || "";
 

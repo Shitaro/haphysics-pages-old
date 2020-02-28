@@ -10,7 +10,7 @@ import ToolBar from "@material-ui/core/Toolbar";
 import InputBase from "@material-ui/core/InputBase";
 import SearchIcon from "@material-ui/icons/Search";
 import Hidden from "@material-ui/core/Hidden";
-import ButtonLink from "./atoms/ButtonLink";
+import ButtonLink from "@components/atoms/ButtonLink";
 
 const useStyles = makeStyles((theme: Theme) => 
   createStyles({
@@ -84,7 +84,7 @@ function HeaderNavigation() {
     <div className={classes.root}>
       <AppBar position="fixed">
         <ToolBar>
-          <Hidden xsDown>
+          <Hidden xsDown implementation="css">
             <ButtonLink href="/" size="large">
               Home
             </ButtonLink>

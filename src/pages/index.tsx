@@ -10,12 +10,12 @@ import { makeStyles } from '@material-ui/core/styles';
 import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid"
-import MediaCard, { ButtonLinkProps } from "../components/MediaCard";
-import articleMetaList, { ArticleMeta } from "../assets/articleMetaList";
-import { findCategoryById } from "../assets/categoryList";
-import ButtonLink from "../components/atoms/ButtonLink";
+import MediaCard, { ButtonLinkProps } from "@components/MediaCard";
+import articleMetaList, { ArticleMeta } from "@assets/articleMetaList";
+import { findCategoryById } from "@assets/categoryList";
+import ButtonLink from "@components/atoms/ButtonLink";
 
-const getCategoryButtonList = (article: ArticleMeta) :ButtonLinkProps[] => (
+const getCategoryButtonList = (article: ArticleMeta): ButtonLinkProps[] => (
   article.category.map(category => {
     const categoryObj = findCategoryById(category)!;
 
@@ -89,8 +89,9 @@ const IndexPage: NextPage = () => {
           {articleMetaList.map(article => {
             const categoryButtonList = getCategoryButtonList(article);
             return (
-              <Grid item xs={12} sm={6}>
+              <Grid item xs={12} sm={6} key={article.id}>
                 <MediaCard
+                  key={article.id}
                   title={article.title}
                   href={`/articles/${article.id}`}
                   image={article.thumbnail}
