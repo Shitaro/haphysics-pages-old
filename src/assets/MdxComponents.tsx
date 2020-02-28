@@ -4,14 +4,15 @@
 // https://opensource.org/licenses/MIT
 
 import React from "react";
-import Typography from "@material-ui/core/Typography";
+import Checkbox from "@material-ui/core/Checkbox";
 import Divider from "@material-ui/core/Divider";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
-import ArticleLayout from "../layouts/ArticleLayout";
+import Typography from "@material-ui/core/Typography";
+import ArticleLayout from "@layouts/ArticleLayout";
 import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -58,6 +59,12 @@ const components = {
     td: ({align, ...props}: any) => <TableCell align={align||undefined} {...props} />,
     th: ({align, ...props}: any) => <TableCell align={align||undefined} {...props} />,
     inlineCode: (props: any) => <code class="language-none" {...props} />,
+    input: (props: any) => {
+        if (props.type === "checkbox") {
+            return <Checkbox {...props} color="primary" disabled={false} disableRipple />;
+        }
+        return <input {...props} />;
+    },
     hr: Divider,
 }
 

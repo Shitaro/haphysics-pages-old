@@ -1,0 +1,386 @@
+import MuiButton from "@material-ui/core/Button";
+
+export const meta = {
+    title: "MDXのレンダリングテスト",
+    description: "MDXをレンダリングした結果を確認する。",
+    thumbnail: "/articles/mdx-rendering-test-page/thumbnail.png",
+    category: ["programming"],
+    tag: ["mdxjs"],
+    postDate: "2020-02-27T01:57:15",
+}
+
+ここは、MDXのレンダリングを確認するページです。
+
+## h2 heading
+
+**CAUTION**: h1 heading (`# h1 heading` or `<h1>h1 heading</h1>`) は使わない！
+
+`meta.title` の表示に h1 heading を使っているため、
+本文では h2 heading 以降のみを使う。
+
+### h3 heading
+
+#### h4 heading
+
+##### h5 heading
+
+###### h6 heading
+
+## 水平線 (Horizontal rule)
+
+方法1: ハイフン (`---`)
+
+```md
+---
+```
+
+結果:
+
+---
+
+方法2: アスタリスク (`***`)
+
+```md
+***
+```
+
+結果:
+
+***
+
+方法3: アンダーバー (`___`)
+
+```md
+___
+```
+
+結果:
+
+___
+
+## 強調 (Enphasis)
+
+### 太字 (Bold)
+
+方法1: アスタリスク (`**`) で囲む
+
+```md
+**これは太字の文です。**  
+**This is bold text.**
+```
+
+結果:
+
+**これは太字の文です。**  
+**This is bold text.**
+
+方法2: アンダーバー (`__`) で囲む
+
+```md
+__これは太字の文です。__  
+__This is bold text.__
+```
+
+結果:
+
+__これは太字の文です。__  
+__This is bold text.__
+
+### 斜体 (Italic)
+
+方法1: アスタリスク (`*`) で囲む
+
+```md
+*これは斜体の文です。*  
+*This is italic text.*
+```
+
+結果:
+
+*これは斜体の文です。*  
+*This is italic text.*
+
+方法2: アンダーバー (`_`) で囲む
+
+```md
+_これは斜体の文です。_  
+_This is italic text._
+```
+
+結果:
+
+_これは斜体の文です。_  
+_This is italic text._
+
+### 打ち消し線 (Strikethrough)
+
+波線 (`~~`) で囲む
+
+```md
+~~これは打ち消し線です。~~  
+~~This is strikethrough.~~
+```
+
+結果:
+
+~~これは打ち消し線です。~~  
+~~This is strikethrough.~~
+
+## 引用文 (Blockquotes)
+
+大なり記号 (`>`) を行の先頭につける
+
+```md
+> これは引用文です。
+>> 引用文はネストできます。
+> > > 大なり記号の間にスペースを挟むこともできます。
+```
+
+> これは引用文です。
+>> 引用文はネストできます。
+> > > 大なり記号の間にスペースを挟むこともできます。
+
+## リスト (Lists)
+
+### 順序なしリスト (Unordered list)
+
+プラス (`+`)、ハイフン (`-`)、もしくはアスタリスク (`*`) を行の先頭につける
+
+```md
++ List1
+- List2
+    + リスト2.1
+    - リスト2.2
+    * リスト2.3
+        + 項目2.2.1
+        - 項目2.2.2
+        * 項目2.2.2
+            + nested list item
+* List3
+```
+
+結果:
+
++ List1
+- List2
+    + リスト2.1
+    - リスト2.2
+    * リスト2.3
+        + 項目2.2.1
+        - 項目2.2.2
+        * 項目2.2.2
+            + nested list item
+* List3
+
+### 順序ありリスト (Ordered list)
+
+数字 + ピリオド (`.`) を行の先頭につける。
+
+```md
+1. first
+2. second
+3. third
+```
+
+結果:
+
+1. first
+2. second
+3. third
+
+連番 + ピリオド (`.`) の代わりに `1.` を行の先頭につけることでも順序ありリストを表現できる。
+
+```md
+1. hoge
+1. fuga
+```
+
+1. hoge
+1. fuga
+
+連番の開始番号に $N (\geq 2)$ を指定することができる。
+
+```md
+123. hoge
+1. fuga
+1. poi
+```
+
+結果:
+
+123. hoge
+1. fuga
+1. poi
+
+## コード (Code)
+
+### インラインコード (Inline code)
+
+1個のバッククォート (`` ` ``) で囲む。
+
+```md
+`inline code`
+```
+
+結果:
+
+`inline code`
+
+### コードブロック (Fenced code blocks)
+
+3個のバッククォート (```` ``` ````) で囲む。
+先頭の ```` ``` ```` の右側にプログラム言語を指定することで、その言語のシンタックスハイライトが適用される。
+
+````md
+```cpp
+#include <iostream>
+
+template <typename T>
+T add(T a, T b) {
+    return a + b;
+}
+
+int main() {
+    std::cout << "1 + 2 = " << add(1, 2) << std::endl; // Output: 1 + 2 = 3
+    return 0;
+}
+```
+````
+
+結果:
+
+```cpp
+#include <iostream>
+
+template <typename T>
+T add(T a, T b) {
+    return a + b;
+}
+
+int main() {
+    std::cout << "1 + 2 = " << add(1, 2) << std::endl; // Output: 1 + 2 = 3
+    return 0;
+}
+```
+
+## 表 (Tables)
+
+表はパイプ (`|`) とハイフン (`-`) で構成される。
+
+- ハイフン (`-`): ヘッダーを作る
+- パイプ (`|`): 各列に分ける
+
+```md
+| 月 | 異名   | Month     |
+| -- | ------ | --------- |
+|  1 | 睦月   | January   |
+|  2 | 如月   | February  |
+|  3 | 弥生   | March     |
+|  4 | 卯月   | April     |
+|  5 | 皐月   | May       |
+|  6 | 水無月 | June      |
+|  7 | 文月   | July      |
+|  8 | 葉月   | August    |
+|  9 | 長月   | September |
+| 10 | 神無月 | October   |
+| 11 | 霜月   | November  |
+| 12 | 師走   | December  |
+````
+
+結果:
+
+| 月 | 異名   | Month     |
+| -- | ------ | --------- |
+|  1 | 睦月   | January   |
+|  2 | 如月   | February  |
+|  3 | 弥生   | March     |
+|  4 | 卯月   | April     |
+|  5 | 皐月   | May       |
+|  6 | 水無月 | June      |
+|  7 | 文月   | July      |
+|  8 | 葉月   | August    |
+|  9 | 長月   | September |
+| 10 | 神無月 | October   |
+| 11 | 霜月   | November  |
+| 12 | 師走   | December  |
+
+ヘッダーを構成するハイフンの左、中央、または右にコロン (`:`) をつけることで、列のアライメントを指定することができる。
+
+```md
+| Left-aligned | Center-aligned | Right-aligned |
+| :----------- | :------------: | ------------: |
+| hoge         | hoge           | hoge          |
+```
+
+結果:
+
+| Left-aligned | Center-aligned | Right-aligned |
+| :----------- | :------------: | ------------: |
+| hoge         | hoge           | hoge          |
+
+## リンク (Links)
+
+```md
+[Haphysics](https://Haphysics.com)
+```
+
+[Haphysics](https://Haphysics.com)
+
+URLの後ろに `"タイトル"` をつけることで、タイトル付きのリンクを作れる。
+タイトル付きのリンクをマウスオーバーするとそのタイトルが現れる。
+
+```md
+[Haphysics](https://Haphysics.com "幸福の物理")
+```
+
+[Haphysics](https://Haphysics.com "幸福の物理")
+
+## 画像 (Images)
+
+```md
+![Haphysics logo](/favicon/android-chrome-192x192.png)
+```
+
+![Haphysics logo](/favicon/android-chrome-192x192.png)
+
+URLの後ろに `"タイトル"` をつけることで、タイトル付きのリンクを作れる。
+タイトル付きのリンクをマウスオーバーするとそのタイトルが現れる。
+
+```md
+![Haphysics logo](/favicon/android-chrome-192x192.png "Haphysics logo")
+```
+
+![Haphysics logo](/favicon/android-chrome-192x192.png "Haphysics logo")
+
+## チェックボックス (Checkbox)
+
+順序なしリストの項目の先頭に `[ ]` をつけることでチェックボックスが生成される。  
+カッコ内に `x` をつける (`[x]`) ことで、チェックが入った状態のチェックボックスが生成される。
+
+```md
+- [ ] Unchecked
+- [x] Checked
+```
+
+結果:
+
+- [ ] Unchecked
+- [x] Checked
+
+## React Components
+
+MDXファイル内では、Reactコンポーネントを使える。
+
+```md
+import MuiButton from "@material-ui/core/Button";
+// 中略 //
+<MuiButton variant="contained" color="primary">Material UI Button</MuiButton>
+```
+
+結果:
+
+<MuiButton variant="contained" color="primary">Material UI Button</MuiButton>
+
+## Reference
+
+[MDX](https://mdxjs.com/ "MDX.js")
