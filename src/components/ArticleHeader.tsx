@@ -28,9 +28,11 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 export type ArticleHeaderProps = {
+    id: string,
     title: string,
-    postDate: string,
     description: string,
+    thumbnail: string,
+    postDate: string,
     lastUpdateDate?: string,
     category: string[],
     tag: string[],
@@ -42,6 +44,14 @@ const ArticleHeader: React.FC<ArticleHeaderProps> = props => {
         <>
             <Meta>
                 <title key="title">{props.title} - Haphysics</title>
+                <meta property="og:url" content={`https://haphysics.com/articles/${props.id}`} />
+                <meta property="og:title" content={props.title} />
+                <meta property="og:description" content={props.description} />
+                <meta property="og:type" content="article" />
+                <meta property="og:image" content={props.thumbnail} />
+                <meta property="og:site_name" content="幸福の物理 - Haphysics" />
+                <meta name="twitter:card" content="summary_large_image" />
+                <meta name="twitter:site" content="@shitaro2016" />
             </Meta>
             <div className={classes.root}>
                 <Typography component="h1" variant="h1" gutterBottom>

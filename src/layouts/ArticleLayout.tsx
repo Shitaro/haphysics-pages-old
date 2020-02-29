@@ -10,6 +10,7 @@ import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
 import Hidden from "@material-ui/core/Hidden";
 import { makeStyles, Theme, createStyles } from "@material-ui/core/styles";
+import ArticleFooter from "@components/ArticleFooter";
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -42,6 +43,7 @@ const ArticleLayout: React.FC = (props:any) => {
                     </Grid>
                 </Hidden>
             </Grid>
+            <ArticleFooter {...meta} />
         </Container>
     )
 }
