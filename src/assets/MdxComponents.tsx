@@ -23,14 +23,14 @@ const useStyles = makeStyles((theme: Theme) =>
             // Reference of value of margin/padding:
             // https://material-ui.com/customization/default-theme/
             paddingTop: theme.spacing(7),
-            marginTop: -theme.spacing(7),
+            marginTop: -theme.spacing(4),
             [`${theme.breakpoints.up("xs")} and (orientation: landscape)`]: {
                 paddingTop: theme.spacing(6),
-                marginTop: -theme.spacing(6),
+                marginTop: -theme.spacing(4),
             },
             [theme.breakpoints.up("sm")]: {
                 paddingTop: theme.spacing(8),
-                marginTop: -theme.spacing(8),
+                marginTop: -theme.spacing(6),
             },
         },
     })
