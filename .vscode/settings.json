@@ -1,27 +1,7 @@
 {
+    "editor.insertSpaces": true,
     "editor.tabSize": 4,
-    "licenser.license": "MIT",
-    "licenser.author": "shitaro2016",
-    "editor.tokenColorCustomizations": {
-        "textMateRules": [
-            {
-                "scope": "googletest.failed",
-                "settings": {
-                    "foreground": "#f00"
-                }
-            },
-            {
-                "scope": "googletest.passed",
-                "settings": {
-                    "foreground": "#0f0"
-                }
-            },
-            {
-                "scope": "googletest.run",
-                "settings": {
-                    "foreground": "#0f0"
-                }
-            }
-        ]
+    "editor.codeActionsOnSave": {
+        "source.fixAll.eslint": true
     }
 }
