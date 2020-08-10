@@ -4,7 +4,7 @@ import { gql, useQuery } from "@apollo/client";
 
 const GET_POSTS = gql`
     query getPosts {
-        posts {
+        articles {
             id
             title
             content
@@ -30,10 +30,10 @@ const Page = (): ReactElement => {
     return (
         <>
             <h1>QraphQL Query Fetch!</h1>
-            {data.posts.map((post) => (
+            {data.articles.map((article) => (
                 <>
-                    <h2 key={post.id}>{post.title}</h2>
-                    {post.content}
+                    <h2 key={article.id}>{article.title}</h2>
+                    {article.content}
                 </>
             ))}
             <br />

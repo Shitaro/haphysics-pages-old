@@ -10,7 +10,7 @@ import {
 const client = new ApolloClient({
     cache: new InMemoryCache(),
     link: new HttpLink({
-        uri: "http://localhost:1337/graphql",
+        uri: "https://obscure-retreat-94818.herokuapp.com/graphql",
     }),
 });
 
