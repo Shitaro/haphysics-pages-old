@@ -38,6 +38,10 @@ const Article = ({ article }: Props): ReactElement => {
             <br />
             {article.content}
             <br />
+            <Link href="/articles">
+                <a>Go to Article List</a>
+            </Link>
+            <br />
             <Link href="/">
                 <a>Go to Home</a>
             </Link>

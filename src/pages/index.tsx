@@ -9,6 +9,10 @@ const IndexPage = (): ReactElement => (
             <a>Go to About</a>
         </Link>
         <br />
+        <Link href="/articles">
+            <a>Go to Article List</a>
+        </Link>
+        <br />
         <Link href="/mygraphql">
             <a>Go to GraphQL</a>
         </Link>
