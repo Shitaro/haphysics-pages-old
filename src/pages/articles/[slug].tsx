@@ -3,6 +3,7 @@ import { GetStaticPaths, GetStaticProps } from "next";
 import Link from "next/link";
 import { gql } from "@apollo/client";
 import createApolloClient from "../../lib/apolloClient";
+import getArticleContent from "../../lib/articles";
 
 const GET_ARTICLE_ALL_SLUGS = gql`
     query getArticles {
@@ -36,7 +37,7 @@ const Article = ({ article }: Props): ReactElement => {
             <p>TEST</p>
             <h1>{article.title}</h1>
             <br />
-            {article.content}
+            {getArticleContent(article.content)}
             <br />
             <Link href="/articles">
                 <a>Go to Article List</a>
